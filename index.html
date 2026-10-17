@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio</title>
+  <meta name="description" content="Personal portfolio — projects, experience, skills and interests.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+  <!-- Fonts: Bank Gothic is used if it is installed on the visitor's machine (or you add a licensed
+       web font in /fonts — see css/style.css). Michroma is the free Google Fonts fallback with the same
+       wide, squared, technical feel. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Set the theme before the page paints, so there's no flash of the wrong colours. -->
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#about">Skip to content</a>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="nav" id="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="#home" aria-label="Back to top">
+        <span class="brand__mark" data-initials>YN</span>
+        <span class="brand__name" data-bind="name">Your Name</span>
+      </a>
+
+      <ul class="nav__links" id="nav-links">
+        <li><a href="#about"><span>01</span>About</a></li>
+        <li><a href="#experience"><span>02</span>Experience</a></li>
+        <li><a href="#projects"><span>03</span>Projects</a></li>
+        <li><a href="#skills"><span>04</span>Skills</a></li>
+        <li><a href="#interests"><span>05</span>Interests</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to light theme">
+          <svg class="ico ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M1.5 12H4M20 12h2.5M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+          <svg class="ico ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="wrap hero__inner">
+        <p class="eyebrow mono" id="hero-status"><span class="dot"></span><span data-bind="status">Open to opportunities</span></p>
+        <h1 class="hero__name" id="hero-name">Your Name</h1>
+        <p class="hero__role"><span class="prompt mono">&gt;_</span><span id="typed"></span><span class="caret" aria-hidden="true"></span></p>
+        <p class="hero__tagline" data-bind="tagline"></p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#projects">View projects
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#about">About me</a>
+          <a class="btn btn--ghost" id="resume-btn" href="#" target="_blank" rel="noopener" hidden>Résumé</a>
+        </div>
+      </div>
+      <div class="hud mono" aria-hidden="true">
+        <div class="wrap hud__row">
+          <span><span class="hud__label">LOC</span> <span data-bind="location">City, Country</span></span>
+          <span><span class="hud__label">LOCAL</span> <span id="hud-time">--:--:--</span></span>
+        </div>
+      </div>
+      <a class="scroll-cue mono" href="#about" aria-label="Scroll to About">
+        <span>Scroll</span><span class="scroll-cue__line"></span>
+      </a>
+    </section>
+
+    <!-- ============ 01 ABOUT ============ -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-num mono">01</span>
+          <h2 class="section-title">About Me</h2>
+          <span class="section-rule"></span>
+        </header>
+
+        <div class="about">
+          <figure class="photo reveal">
+            <span class="photo__orbit" aria-hidden="true"></span>
+            <div class="photo__frame">
+              <img id="profile-photo" src="images/profile-placeholder.svg" alt="Profile photo">
+              <span class="photo__scan" aria-hidden="true"></span>
+            </div>
+            <span class="photo__corner photo__corner--tl" aria-hidden="true"></span>
+            <span class="photo__corner photo__corner--br" aria-hidden="true"></span>
+            <figcaption class="photo__tag mono">
+              <span data-bind="name">Your Name</span>
+              <span data-bind="location">City, Country</span>
+            </figcaption>
+          </figure>
+
+          <div class="about__body">
+            <div class="about__text reveal" id="about-text"></div>
+            <ul class="facts reveal" id="about-facts"></ul>
+            <div class="socials reveal" data-socials></div>
+            <div class="stats reveal" id="about-stats"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 02 EXPERIENCE ============ -->
+    <section class="section" id="experience">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-num mono">02</span>
+          <h2 class="section-title">Education &amp; Experience</h2>
+          <span class="section-rule"></span>
+        </header>
+
+        <div class="tabs reveal" id="tl-tabs" role="tablist" aria-label="Filter timeline">
+          <button class="tab mono" role="tab" data-filter="all" aria-selected="true">All</button>
+          <button class="tab mono" role="tab" data-filter="education" aria-selected="false">Education</button>
+          <button class="tab mono" role="tab" data-filter="work" aria-selected="false">Work</button>
+        </div>
+
+        <ol class="timeline" id="timeline"></ol>
+      </div>
+    </section>
+
+    <!-- ============ 03 PROJECTS ============ -->
+    <section class="section section--projects" id="projects">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-num mono">03</span>
+          <h2 class="section-title">Coding Projects</h2>
+          <span class="section-rule"></span>
+        </header>
+        <p class="section-intro reveal">Click any project to see the full story: what I built, the skills it demonstrates and what it cost.</p>
+
+        <div class="proj-toolbar reveal">
+          <label class="search">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.6-4.6"/></svg>
+            <span class="sr-only">Search projects</span>
+            <input type="search" id="proj-search" placeholder="Search projects…" autocomplete="off">
+          </label>
+          <div class="chips" id="proj-filters" role="group" aria-label="Filter projects by skill"></div>
+        </div>
+        <p class="proj-meta mono reveal"><span id="proj-count"></span><span class="proj-meta__hint">Use ← → in the detail view to browse</span></p>
+
+        <div class="proj-grid" id="proj-grid"></div>
+        <div class="proj-empty" id="proj-empty" hidden>
+          <p>No projects match that search.</p>
+          <button class="btn btn--ghost" type="button" id="proj-reset">Clear filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 04 SKILLS ============ -->
+    <section class="section" id="skills">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-num mono">04</span>
+          <h2 class="section-title">Skills</h2>
+          <span class="section-rule"></span>
+        </header>
+
+        <div class="sub-head reveal">
+          <span class="mono">4.1</span><h3>Languages</h3>
+          <p class="mono">Hover to light up · click for proficiency</p>
+        </div>
+        <div class="lang-grid" id="lang-grid"></div>
+
+        <div class="sub-head reveal">
+          <span class="mono">4.2</span><h3>Coding Languages</h3>
+          <p class="mono">Click to see related projects</p>
+        </div>
+        <div class="code-grid" id="code-grid"></div>
+
+        <div class="sub-head reveal">
+          <span class="mono">4.3</span><h3>Libraries &amp; Frameworks</h3>
+        </div>
+        <div class="fw-grid" id="fw-grid"></div>
+
+        <div class="sub-head reveal">
+          <span class="mono">4.4</span><h3>Soft Skills</h3>
+        </div>
+        <ul class="soft-grid" id="soft-grid"></ul>
+      </div>
+    </section>
+
+    <!-- ============ 05 INTERESTS ============ -->
+    <section class="section" id="interests">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-num mono">05</span>
+          <h2 class="section-title">Interests</h2>
+          <span class="section-rule"></span>
+        </header>
+
+        <div class="interest-grid" id="interest-grid"></div>
+
+        <div class="travel reveal" id="travel">
+          <div class="travel__head">
+            <div>
+              <p class="mono travel__kicker">Field log</p>
+              <h3 class="travel__title">Places I've travelled</h3>
+            </div>
+            <div class="travel__stats">
+              <div class="tstat"><strong id="travel-count">0</strong><span class="mono">Jurisdictions</span></div>
+              <div class="tstat"><strong id="travel-regions">0</strong><span class="mono">Regions explored</span></div>
+            </div>
+          </div>
+          <div class="travel__body">
+            <div class="map-pane">
+              <button class="btn btn--ghost btn--sm map-back" id="map-back" type="button" hidden>
+                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+                World view
+              </button>
+              <div id="geochart" class="geochart" role="img" aria-label="World map highlighting places I've travelled to"></div>
+              <p class="geo-fallback" id="geo-fallback" hidden>The interactive map needs an internet connection — the full list is on the right.</p>
+              <p class="map-hint mono" id="map-hint">Click a highlighted country</p>
+            </div>
+            <div class="side-pane">
+              <ul class="places" id="places"></ul>
+              <div class="gmap">
+                <span class="gmap__label mono" id="gmap-label">Google Maps</span>
+                <iframe id="gmap" title="Google Maps view of the selected place" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+              <p class="gmap__note" id="gmap-note"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap">
+      <p class="mono footer__kicker">Get in touch</p>
+      <h2 class="footer__cta">Let's build<br><span>something.</span></h2>
+      <div class="footer__actions">
+        <a class="btn btn--primary" data-email href="#">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
+          <span data-bind="email">you@example.com</span>
+        </a>
+        <div class="socials" data-socials></div>
+      </div>
+      <div class="footer__row mono">
+        <span>© <span id="year"></span> <span data-bind="name">Your Name</span></span>
+        <span>Hand-built with HTML · CSS · JavaScript</span>
+        <a href="#home" class="to-top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ PROJECT DETAIL MODAL ============ -->
+  <dialog class="modal" id="project-modal" aria-labelledby="m-title">
+    <div class="modal__inner">
+      <header class="modal__head">
+        <div>
+          <p class="modal__kicker mono" id="m-kicker"></p>
+          <h3 class="modal__title" id="m-title"></h3>
+        </div>
+        <button class="icon-btn" type="button" id="m-close" aria-label="Close project details">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </header>
+
+      <div class="modal__body" id="m-body">
+        <div class="modal__media" id="m-media" hidden></div>
+        <div class="modal__grid">
+          <div class="modal__main">
+            <h4>Overview</h4>
+            <div id="m-overview"></div>
+            <div id="m-highlights-wrap">
+              <h4>What I did</h4>
+              <ul class="highlights" id="m-highlights"></ul>
+            </div>
+          </div>
+          <aside class="modal__side">
+            <div class="side-block cost-card">
+              <p class="mono side-label">Project cost</p>
+              <strong class="cost" id="m-cost">$0</strong>
+              <p class="cost-note" id="m-cost-note"></p>
+              <table class="cost-table" id="m-cost-table"></table>
+            </div>
+            <div class="side-block">
+              <h4>Skills demonstrated</h4>
+              <div class="tag-list" id="m-skills"></div>
+            </div>
+            <div class="side-block" id="m-facts-wrap">
+              <h4>Details</h4>
+              <dl class="facts-dl" id="m-facts"></dl>
+            </div>
+            <div class="modal__links" id="m-links"></div>
+          </aside>
+        </div>
+      </div>
+
+      <footer class="modal__foot">
+        <button class="btn btn--ghost btn--sm" type="button" id="m-prev">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          Prev
+        </button>
+        <span class="mono" id="m-counter"></span>
+        <button class="btn btn--ghost btn--sm" type="button" id="m-next">
+          Next
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </footer>
+    </div>
+  </dialog>
+
+  <!-- Your content lives in data.js — edit that file, not this one. -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
