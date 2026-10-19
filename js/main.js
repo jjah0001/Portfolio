@@ -506,6 +506,7 @@
 
     // cost
     const costEl = $('#m-cost');
+    costEl.closest('.cost-card').hidden = !p.cost;
     countUp(costEl, cost.total, { duration: 900, format: (v) => money(cost.total % 1 ? v : Math.round(v), cost.currency) });
     $('#m-cost-note').textContent = cost.note || (cost.total === 0 && !cost.breakdown.length ? 'No cost' : '');
     const max = Math.max(...cost.breakdown.map((b) => Number(b.amount) || 0), 1);
