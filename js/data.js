@@ -14,9 +14,18 @@
    • UI icons ..... github, linkedin, mail, file, map-pin, grad, briefcase,
                     globe, zap, plane, music, camera, book, game, run, cpu,
                     coffee, users, message, target, clock, compass, layers,
-                    spark, heart, code, robot, mountain, food, pen
+                    spark, heart, code, robot, mountain, food, pen, shuttlecock, tea
    • Travel codes . ISO 3166-1 country codes ("AU", "HK", "MO", "TW"...);
                     optional regions use ISO 3166-2 ("AU-VIC", "US-CA"...)
+   • Your photos .. put them in /images (e.g. images/projects, images/interests,
+                    images/travel, images/logos) and write the path in quotes.
+                    Any list of photos can be plain paths or { src, caption }:
+                      gallery: [
+                        "images/projects/robot-1.jpg",
+                        { src: "images/projects/robot-2.jpg", caption: "First test run" }
+                      ]
+                    Tip: export photos as .jpg / .webp around 1600px wide (< 500 KB)
+                    so the page loads quickly.
    ========================================================================== */
 
 window.PORTFOLIO = {
@@ -73,6 +82,7 @@ window.PORTFOLIO = {
 
   /* ------------------------------------------- EDUCATION & EXPERIENCE */
   // type: "education" or "work". Newest first reads best.
+  // logo: optional, e.g. "images/logos/monash.png" — replaces the icon on the timeline.
   timeline: [
     {
       type: "work",
@@ -139,7 +149,11 @@ window.PORTFOLIO = {
   //   details    → paragraphs for the detail view (simple HTML allowed)
   //   highlights → bullet points of what YOU did
   //   cost       → total is optional; if left out it's the sum of the breakdown
-  //   image      → optional, e.g. "images/projects/robot.jpg"
+  //   image      → optional cover photo, e.g. "images/projects/robot.jpg"
+  //                (shown on the card and first in the detail view)
+  //   gallery    → optional extra photos for the detail view, e.g.
+  //                gallery: ["images/projects/robot-2.jpg",
+  //                          { src: "images/projects/robot-3.jpg", caption: "Final demo" }]
   //   featured   → true makes the card double-size on wide screens
   // Keep completed projects in newest-to-oldest order.
   projects: [
@@ -473,8 +487,14 @@ window.PORTFOLIO = {
   ],
 
   /* ----------------------------------------------------------- INTERESTS */
+  // image   → optional photo shown on the card, e.g. "images/interests/amazing-race.jpg"
+  // gallery → optional more photos; clicking the card opens them full screen
+  // imagePosition → optional crop focus for the card photo, e.g. "center 25%" keeps faces in a tall photo
   interests: [
-    { title: "Travel",      icon: "plane",  text: "I am a huge fan of the TV show called The Amazing Race since young. I even met the host Phil Keoghan!" },
+    { title: "Travel",      icon: "plane",  text: "I am a huge fan of the TV show called The Amazing Race since young. I even met the host Phil Keoghan!",
+      image: "images/interests/travel-1.jpg", imagePosition: "center 28%" },
+    { title: "Badminton",   icon: "shuttlecock", text: "Fast, tactical and great fun: my favourite way to stay active and catch up with friends." },
+    { title: "Chinese Tea", icon: "tea",    text: "Exploring Chinese tea culture: brewing, tasting and learning the stories behind different teas." },
     { title: "Music",       icon: "music",  text: "A sentence about what draws you to this and how you pursue it." },
     { title: "Photography", icon: "camera", text: "A sentence about what draws you to this and how you pursue it." },
     { title: "Gaming",      icon: "game",   text: "A sentence about what draws you to this and how you pursue it." },
@@ -486,6 +506,8 @@ window.PORTFOLIO = {
   //   code     → ISO country / territory code (HK, MO, TW work as their own jurisdictions)
   //   regions  → optional list of states/provinces; clicking the country zooms in to them
   //   mapQuery → optional search text for the Google Maps panel (defaults to name)
+  //   photos   → optional, e.g. photos: ["images/travel/bali-1.jpg", { src: "images/travel/bali-2.jpg", caption: "Uluwatu" }]
+  //              shown as thumbnails under the Google Map when that place is selected
   travel: {
     darkMap: true,   // tints the Google Maps panel dark when the site is in dark mode
     visited: [
@@ -546,7 +568,7 @@ window.PORTFOLIO = {
       { code: "IN", name: "India" },
       { code: "BT", name: "Bhutan" },
       { code: "AE", name: "United Arab Emirates" },
-      { code: "QT", name: "Qatar" },
+      { code: "QA", name: "Qatar" },
       { code: "CA", name: "Canada" },
       { code: "GB", name: "United Kingdom", note: "Replace with a memory or highlight." },
       { code: "FR", name: "France",         note: "Replace with a memory or highlight." },

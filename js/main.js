@@ -58,6 +58,10 @@
     'arrow-right': '<path d="M5 12h14M13 6l6 6-6 6"/>',
     external: '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/>',
     'chevron-down': '<path d="m6 9 6 6 6-6"/>',
+    shuttlecock: '<circle cx="12" cy="19" r="2.6"/><path d="M9.8 17.6 6 4.5h12l-3.8 13.1M7.3 9h9.4M10 4.5l1 12.6M14 4.5l-1 12.6"/>',
+    tea: '<path d="M4 9.5h13V13a5.5 5.5 0 0 1-5.5 5.5h-2A5.5 5.5 0 0 1 4 13V9.5z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H16M3 21h16M8.5 2.5c-.8 1 .8 2-.1 3.4M12.5 2.5c-.8 1 .8 2-.1 3.4"/>',
+    zoom: '<circle cx="11" cy="11" r="7.5"/><path d="m21 21-4.6-4.6M11 8v6M8 11h6"/>',
+    image: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>',
     flip: '<path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>'
   };
   const icon = (name, cls = '') =>
@@ -116,6 +120,70 @@
     const total = c.total != null ? Number(c.total) : breakdown.reduce((a, b) => a + (Number(b.amount) || 0), 0);
     return { total, breakdown, currency: c.currency || META.currency || 'AUD', note: c.note || '' };
   };
+
+  // Images can be written as "path.jpg" or { src: "path.jpg", caption: "..." }
+  const toImages = (list) => (list || [])
+    .filter(Boolean)
+    .map((x) => (typeof x === 'string' ? { src: x, caption: '' } : { src: x.src, caption: x.caption || '' }))
+    .filter((x) => x.src);
+  const projectImages = (p) => {
+    const seen = new Set();
+    return toImages([p.image, ...(p.gallery || [])]).filter((x) => !seen.has(x.src) && seen.add(x.src));
+  };
+
+  /* ---------------------------------------------------------- lightbox */
+  const lightbox = { el: null, items: [], i: 0 };
+
+  function openLightbox(items, i = 0) {
+    if (!items || !items.length) return;
+    lightbox.items = items;
+    lightbox.i = i;
+    renderLightbox(0);
+    if (!lightbox.el.open) lightbox.el.showModal();
+  }
+
+  function renderLightbox(dir) {
+    const { items, i, el } = lightbox;
+    const it = items[i];
+    const img = $('.lightbox__img', el);
+    img.src = it.src;
+    img.alt = it.caption || '';
+    $('.lightbox__caption', el).textContent = it.caption;
+    $('.lightbox__count', el).textContent = items.length > 1 ? `${pad(i + 1)} / ${pad(items.length)}` : '';
+    $$('.lightbox__nav', el).forEach((b) => { b.hidden = items.length < 2; });
+    if (dir && !reduceMotion) {
+      img.style.setProperty('--swap-from', `${dir * 40}px`);
+      img.classList.remove('is-swapping');
+      void img.offsetWidth;
+      img.classList.add('is-swapping');
+    }
+  }
+
+  function stepLightbox(dir) {
+    const n = lightbox.items.length;
+    if (n < 2) return;
+    lightbox.i = (lightbox.i + dir + n) % n;
+    renderLightbox(dir);
+  }
+
+  function wireLightbox() {
+    const el = lightbox.el = $('#lightbox');
+    $('.lightbox__close', el).addEventListener('click', () => el.close());
+    $('.lightbox__prev', el).addEventListener('click', () => stepLightbox(-1));
+    $('.lightbox__next', el).addEventListener('click', () => stepLightbox(1));
+    el.addEventListener('click', (e) => { if (e.target === el || e.target.classList.contains('lightbox__stage')) el.close(); });
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.stopPropagation(); stepLightbox(1); }
+      if (e.key === 'ArrowLeft') { e.stopPropagation(); stepLightbox(-1); }
+    });
+    let sx = 0;
+    el.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; }, { passive: true });
+    el.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 60) stepLightbox(dx < 0 ? 1 : -1);
+    }, { passive: true });
+    el.addEventListener('close', () => { $('.lightbox__img', el).removeAttribute('src'); });
+  }
 
   function countUp(el, target, { duration = 1200, format = (v) => Math.round(v) } = {}) {
     if (reduceMotion) { el.textContent = format(target); return; }
@@ -314,7 +382,9 @@
       const hasMore = points.length || tags.length;
       return `
       <li class="tl-item reveal" data-type="${isWork ? 'work' : 'education'}">
-        <span class="tl-marker">${icon(isWork ? 'briefcase' : 'grad')}</span>
+        <span class="tl-marker ${t.logo ? 'tl-marker--logo' : ''}">${t.logo
+          ? `<img src="${esc(t.logo)}" alt="${esc(t.org)} logo" loading="lazy">`
+          : icon(isWork ? 'briefcase' : 'grad')}</span>
         <article class="tl-card">
           <div class="tl-head">
             <p class="tl-date mono">${esc(t.start)}${t.end ? ' — ' + esc(t.end) : ''}</p>
@@ -400,10 +470,13 @@
     const shown = p.featured ? skills.slice(0, 6) : skills.slice(0, 3);
     const extra = skills.length - shown.length;
     const tone = STATUS_TONE[norm(p.status)] || 'ok';
+    const photos = projectImages(p);
+    const cover = photos[0];
     return `
     <div class="proj-cell reveal ${p.featured ? 'is-featured' : ''}" style="--i:${i % 6}">
       <button class="proj-card" type="button" data-index="${i}" aria-haspopup="dialog" aria-label="${esc(p.title)} — view details">
-        ${p.image ? `<span class="proj-card__img" style="--img:url('${esc(p.image)}')" aria-hidden="true"></span>` : ''}
+        ${cover ? `<span class="proj-card__img" style="background-image:url('${esc(cover.src)}')" aria-hidden="true"></span>` : ''}
+        ${photos.length > 1 ? `<span class="proj-card__photos mono" aria-hidden="true">${icon('image')} ${photos.length}</span>` : ''}
         <span class="proj-card__glow" aria-hidden="true"></span>
         <span class="proj-card__num" aria-hidden="true">${pad(i + 1)}</span>
         <span class="proj-card__top mono">
@@ -489,9 +562,36 @@
     $('#m-kicker').textContent = [`P/${pad(i + 1)}`, p.category, p.year, p.status].filter(Boolean).join('  ·  ');
     $('#m-title').textContent = p.title;
 
+    // photo gallery: big image + thumbnails; click the big image for full screen
     const media = $('#m-media');
-    media.hidden = !p.image;
-    media.innerHTML = p.image ? `<img src="${esc(p.image)}" alt="${esc(p.title)}">` : '';
+    const shots = projectImages(p);
+    media.hidden = !shots.length;
+    media.innerHTML = shots.length ? `
+      <button class="media-main" type="button" aria-label="View image full screen">
+        <img src="${esc(shots[0].src)}" alt="${esc(shots[0].caption || p.title)}">
+        <span class="media-zoom mono">${icon('zoom')} ${shots.length > 1 ? `1 / ${shots.length}` : 'Expand'}</span>
+      </button>
+      <p class="media-caption">${esc(shots[0].caption)}</p>
+      ${shots.length > 1 ? `<div class="media-thumbs">${shots.map((s, k) => `
+        <button class="media-thumb ${k === 0 ? 'is-active' : ''}" type="button" data-k="${k}" aria-label="Show image ${k + 1}">
+          <img src="${esc(s.src)}" alt="" loading="lazy">
+        </button>`).join('')}</div>` : ''}` : '';
+    let shown = 0;
+    media.onclick = (e) => {
+      const thumb = e.target.closest('.media-thumb');
+      if (thumb) {
+        shown = Number(thumb.dataset.k);
+        const s = shots[shown];
+        const main = $('.media-main img', media);
+        main.src = s.src;
+        main.alt = s.caption || p.title;
+        $('.media-caption', media).textContent = s.caption;
+        $('.media-zoom', media).lastChild.textContent = ` ${shown + 1} / ${shots.length}`;
+        $$('.media-thumb', media).forEach((t) => t.classList.toggle('is-active', t === thumb));
+        return;
+      }
+      if (e.target.closest('.media-main')) openLightbox(shots, shown);
+    };
 
     $('#m-overview').innerHTML = (p.details || [p.short]).map((x) => `<p>${x}</p>`).join('');
     const hl = p.highlights || [];
@@ -708,13 +808,29 @@
 
   /* --------------------------------------------------------- interests */
   function renderInterests() {
-    $('#interest-grid').innerHTML = (D.interests || []).map((it, i) => `
-      <article class="interest reveal" style="--i:${i}">
-        ${icon(it.icon)}
-        ${icon(it.icon, 'interest__ghost')}
-        <h4>${esc(it.title)}</h4>
-        <p>${esc(it.text || '')}</p>
-      </article>`).join('');
+    const list = D.interests || [];
+    const galleries = list.map((it) => toImages([it.image, ...(it.gallery || [])]));
+    const grid = $('#interest-grid');
+    grid.innerHTML = list.map((it, i) => {
+      const imgs = galleries[i];
+      const tag = imgs.length ? 'button' : 'article';
+      return `
+      <${tag} class="interest reveal ${imgs.length ? 'interest--photo' : ''}" style="--i:${i}" ${imgs.length ? `type="button" data-k="${i}" aria-label="${esc(it.title)}: view ${imgs.length} photo${imgs.length === 1 ? '' : 's'}"` : ''}>
+        ${imgs.length ? `<span class="interest__media">
+          <img src="${esc(imgs[0].src)}" alt="" loading="lazy"${it.imagePosition ? ` style="object-position:${esc(it.imagePosition)}"` : ''}>
+          <span class="interest__count mono">${icon('image')} ${imgs.length}</span>
+        </span>` : icon(it.icon, 'interest__ghost')}
+        <span class="interest__body">
+          ${icon(it.icon)}
+          <span class="interest__title">${esc(it.title)}</span>
+          <span class="interest__text">${esc(it.text || '')}</span>
+        </span>
+      </${tag}>`;
+    }).join('');
+    grid.addEventListener('click', (e) => {
+      const card = e.target.closest('.interest--photo');
+      if (card) openLightbox(galleries[Number(card.dataset.k)]);
+    });
   }
 
   /* -------------------------------------------------------- travel map */
@@ -729,7 +845,7 @@
 
     $('#places').innerHTML = visited.map((p) => `
       <li><button class="place" type="button" data-code="${esc(p.code)}">
-        <img src="${FLAG(p.code, 80)}" alt="" loading="lazy" data-fallback>${esc(p.name)}${(p.regions || []).length ? ` <small>${p.regions.length}</small>` : ''}
+        <img src="${FLAG(p.code, 80)}" alt="" loading="lazy" data-fallback>${esc(p.name)}${(p.regions || []).length ? ` <small>${p.regions.length}</small>` : ''}${(p.photos || []).length ? icon('image', 'place__cam') : ''}
       </button></li>`).join('');
     $('#places').addEventListener('click', (e) => {
       const b = e.target.closest('.place');
@@ -760,6 +876,17 @@
     $$('.place').forEach((b) => b.classList.toggle('is-active', norm(b.dataset.code) === norm(code)));
     setGoogleMap(p.mapQuery || p.name, p.name);
     $('#gmap-note').textContent = p.note || '';
+    const photos = toImages(p.photos);
+    const box = $('#place-photos');
+    box.hidden = !photos.length;
+    box.innerHTML = photos.map((s, k) => `
+      <button class="place-photo" type="button" data-k="${k}" aria-label="View photo ${k + 1} from ${esc(p.name)}">
+        <img src="${esc(s.src)}" alt="${esc(s.caption)}" loading="lazy">
+      </button>`).join('');
+    box.onclick = (e) => {
+      const b = e.target.closest('.place-photo');
+      if (b) openLightbox(photos, Number(b.dataset.k));
+    };
     if (zoom && (p.regions || []).length && geo.ready) {
       geo.region = p.code.toUpperCase();
       drawGeo();
@@ -952,6 +1079,7 @@
     renderTravel();
     wireImageFallbacks();
     wireModal();
+    wireLightbox();
     wireNav();
     wireTheme();
     wireCursorGlow();

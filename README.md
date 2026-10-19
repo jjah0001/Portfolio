@@ -28,6 +28,31 @@ python3 -m http.server 8000
 | Interests | `interests` | Icon names are listed at the top of `data.js` |
 | Travel map | `travel.visited` | ISO country codes; optional `regions` (`"AU-VIC"`, `"US-CA"`) let visitors zoom into a country |
 
+## Adding your own photos
+
+1. Put the photo in `images/` (suggested folders: `images/projects/`, `images/interests/`, `images/travel/`, `images/logos/`).
+2. Write its path in `js/data.js`:
+
+| Where | Field | Shows up as |
+|---|---|---|
+| Your portrait | `about.photo` | About Me photo |
+| Project cover | `projects[].image` | Card background + first photo in the detail view |
+| Project photos | `projects[].gallery` | Thumbnail strip in the detail view; click for full screen |
+| Hobby | `interests[].image` / `gallery` | Photo on the card; click the card for full screen |
+| Job / degree | `timeline[].logo` | Logo in the timeline circle |
+| Travel | `travel.visited[].photos` | Thumbnails under the Google Map for that place |
+
+Any list can mix plain paths and captioned photos:
+
+```js
+gallery: [
+  "images/projects/robot-1.jpg",
+  { src: "images/projects/robot-2.jpg", caption: "First test run" }
+]
+```
+
+Paths are case-sensitive once the site is on GitHub Pages (`Robot.JPG` ≠ `robot.jpg`). Export photos as `.jpg` or `.webp`, about 1600px wide and under 500 KB, so the page stays fast.
+
 Skill names in `projects[].skills` that match a coding language or framework name are linked automatically: clicking that skill in the Skills section filters the project grid.
 
 ## Fonts
