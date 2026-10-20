@@ -32,7 +32,10 @@ window.PORTFOLIO = {
 
   /* ---------------------------------------------------------------- META */
   meta: {
-    name: "Jeffrey Jahja 叶骅庆",
+    name: "Jeffrey Jahja",
+    nameAlt: "叶骅庆",                     // name in another script — shown as large vertical characters in the hero ("" hides it)
+    nameAltLabel: "Chinese name",        // small caption next to it
+    nameAltFont: "ZCOOL QingKe HuangYou",       // any Google Font, e.g. "Zhi Mang Xing", "Long Cang", "ZCOOL XiaoWei", "Noto Serif SC"
     role: "Engineer & Developer",
     tagline: "I am an engineering graduate from Monash University who can speak four different language and has a great view of the world!",
     status: "Open to opportunities",      // pill above your name — "" hides it
@@ -214,6 +217,8 @@ window.PORTFOLIO = {
     },
     {
       "id": "fyp-yanshee-rize",
+      "video": "videos/fyp-yanshee-demo.mp4",
+      "videoCaption": "FYP demonstration · Yanshee robot",
       "title": "End-User Robot Programming",
       "short": "An Open RIZE interface that lets people program a Yanshee humanoid using configurable action blocks instead of writing code.",
       "category": "Robotics & Human–Robot Interaction",
@@ -413,13 +418,13 @@ window.PORTFOLIO = {
     },
     {
       name: "Chinese", native: "华语", flag: "cn",
-      level: "Conversational", cefr: "C1", percent: 55,
-      skills: { speaking: 55, listening: 60, reading: 55, writing: 45 },
+      level: "Professional", cefr: "C1", percent: 100,
+      skills: { speaking: 100, listening: 100, reading: 100, writing: 100},
       note: "Optional note."
     },
     {
-      name: "Language Four", native: "Native name", flag: "de",
-      level: "Beginner", cefr: "A2", percent: 30,
+      name: "German", native: "Deutsch", flag: "de",
+      level: "Conversational", cefr: "B1", percent: 30,
       skills: { speaking: 30, listening: 35, reading: 25, writing: 20 },
       note: "Optional note."
     }
@@ -435,7 +440,7 @@ window.PORTFOLIO = {
     { name: "HTML",       icon: "html5",      level: 85, years: "4 yrs" },
     { name: "CSS",        icon: "css3",       level: 80, years: "4 yrs" },
     { name: "SQL",                            level: 60, years: "2 yrs" },
-    { name: "MATLAB",     icon: "matlab",     level: 65, years: "3 yrs" },
+    { name: "MATLAB",     icon: "matlab",     level: 90, years: "5 yrs" },
     { name: "Rust",       icon: "rust",       level: 35, years: "<1 yr", invertDark: true }
   ],
 
@@ -462,8 +467,16 @@ window.PORTFOLIO = {
         { name: "ROS 2",        icon: "ros" },
         { name: "Arduino",      icon: "arduino" },
         { name: "ESP-IDF" },
-        { name: "Raspberry Pi", icon: "raspberrypi" },
-        { name: "KiCad" }
+        { name: "Raspberry Pi", icon: "raspberrypi" }
+      ]
+    },
+    {
+      group: "Design, CAD & Simulation",
+      items: [
+        { name: "SolidWorks" },
+        { name: "Fusion 360" },
+        { name: "KiCad" },
+        { name: "Unity",       icon: "unity", invertDark: true }
       ]
     },
     {
@@ -491,14 +504,12 @@ window.PORTFOLIO = {
   // gallery → optional more photos; clicking the card opens them full screen
   // imagePosition → optional crop focus for the card photo, e.g. "center 25%" keeps faces in a tall photo
   interests: [
-    { title: "Travel",      icon: "plane",  text: "I am a huge fan of the TV show called The Amazing Race since young. I even met the host Phil Keoghan!",
+    { title: "Travel",      icon: "plane",  text: "I am a huge fan of the TV show called The Amazing Race since young and the show has inspired my travels. I even met the host Phil Keoghan!",
       image: "images/interests/travel-1.jpg", imagePosition: "center 28%" },
     { title: "Badminton",   icon: "shuttlecock", text: "Fast, tactical and great fun: my favourite way to stay active and catch up with friends." },
+    { title: "Cooking", icon: "food", text: "I enjoy cooking in my spare time." },
     { title: "Chinese Tea", icon: "tea",    text: "Exploring Chinese tea culture: brewing, tasting and learning the stories behind different teas." },
-    { title: "Music",       icon: "music",  text: "A sentence about what draws you to this and how you pursue it." },
-    { title: "Photography", icon: "camera", text: "A sentence about what draws you to this and how you pursue it." },
-    { title: "Gaming",      icon: "game",   text: "A sentence about what draws you to this and how you pursue it." },
-    { title: "Reading",     icon: "book",   text: "A sentence about what draws you to this and how you pursue it." },
+    { title: "Music",       icon: "music",  text: "A hige fan of Mandopop" },
     { title: "Running",     icon: "run",    text: "A sentence about what draws you to this and how you pursue it." }
   ],
 
@@ -562,14 +573,30 @@ window.PORTFOLIO = {
         regions: [
           { code: "US-CA", name: "California" },
           { code: "US-NV", name: "Nevada" },
-          { code: "US-NY", name: "New York" }
+          { code: "US-AZ", name: "Arizona" },
+          { code: "US-PA", name: "Pennsylvania" },
+          { code: "US-FL", name: "Florida" },
+          { code: "US-NY", name: "New York" },
+          { code: "US-DC", name: "Washington, DC" },
+          { code: "US-VA", name: "Virginia" },
+          { code: "US-MD", name: "Maryland" },
+          { code: "US-NJ", name: "New Jersey" }
         ]
       },
-      { code: "IN", name: "India" },
+      { code: "IN", name: "India", note: "Transit stop in West Bengal.",
+        regions: [
+          { code: "IN-WB", name: "West Bengal" }
+        ]
+      },
       { code: "BT", name: "Bhutan" },
       { code: "AE", name: "United Arab Emirates" },
       { code: "QA", name: "Qatar" },
-      { code: "CA", name: "Canada" },
+      { code: "CA", name: "Canada",
+        regions: [
+          { code: "CA-BC", name: "British Columbia" },
+          { code: "CA-ON", name: "Ontario" }
+        ]
+      },
       { code: "GB", name: "United Kingdom", note: "Replace with a memory or highlight." },
       { code: "FR", name: "France",         note: "Replace with a memory or highlight." },
       { code: "DE", name: "Germany",         note: "Replace with a memory or highlight." },

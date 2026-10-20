@@ -303,6 +303,45 @@ body.has-pointer .cursor-glow { opacity: 1; }
   animation-delay: calc(var(--d) * 45ms + .2s);
 }
 
+/* name in another script: tall vertical characters on the right of the hero */
+.hero__alt {
+  position: absolute; z-index: 1;
+  top: 50%; right: max(16px, calc((100vw - var(--wrap)) / 2));
+  transform: translateY(-50%);
+  display: flex; align-items: flex-start; gap: 16px;
+  margin: 0;
+  pointer-events: none;
+}
+.hero__alt-name {
+  display: flex; flex-direction: column; align-items: center;
+  font-family: var(--alt-font, "ZCOOL QingKe HuangYou"), "PingFang SC", "Microsoft YaHei", sans-serif; font-weight: 400;
+  font-size: clamp(3.8rem, 7.5vw, 7rem); line-height: 1.1;
+  color: color-mix(in srgb, var(--accent) 88%, transparent);
+  text-shadow: 0 0 40px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.hero__alt-name span {
+  display: block;
+  opacity: 0; transform: translateY(-.25em); filter: blur(8px);
+  animation: chIn 1s var(--ease) forwards;
+  animation-delay: calc(var(--k) * 140ms + .9s);
+}
+.hero__alt-label {
+  writing-mode: vertical-rl;
+  padding: 4px 0 0 10px;
+  border-left: 1px solid var(--line-2);
+  color: var(--faint); font-size: .62rem; letter-spacing: .3em;
+}
+@media (max-width: 1100px) {
+  /* not enough room beside the name: sit under it horizontally */
+  .hero__alt {
+    position: static; transform: none;
+    align-items: center; gap: 14px;
+    margin: -4px 0 18px;
+  }
+  .hero__alt-name { flex-direction: row; font-size: clamp(1.8rem, 6vw, 2.6rem); letter-spacing: .12em; }
+  .hero__alt-label { writing-mode: horizontal-tb; padding: 2px 0 2px 12px; letter-spacing: .14em; }
+}
+
 .hero__role {
   display: flex; align-items: center; gap: 12px;
   min-height: 1.7em; margin: 0 0 16px;
@@ -1215,3 +1254,7 @@ button.interest { cursor: pointer; font: inherit; color: inherit; }
   }
   .reveal { opacity: 1; translate: none; }
 }
+
+/* Project demonstration videos */
+.project-video { margin: 20px 0 0; }
+.project-video video { display: block; width: 100%; max-height: 480px; background: #000; border-radius: 14px; }

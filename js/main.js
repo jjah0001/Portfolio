@@ -235,6 +235,23 @@
     ).join(' ');
   }
 
+  // Name in another script (e.g. Chinese), shown separately from the main name.
+  function renderAltName() {
+    const alt = String(META.nameAlt || '').trim();
+    if (!alt) return;
+    const box = $('#hero-alt');
+    $('.hero__alt-name', box).innerHTML = Array.from(alt).map((ch, k) => `<span style="--k:${k}">${esc(ch)}</span>`).join('');
+    $('.hero__alt-label', box).textContent = META.nameAltLabel || '';
+    box.hidden = false;
+    // load the chosen Google Font for just these characters (tiny download)
+    const font = String(META.nameAltFont || 'ZCOOL QingKe HuangYou').trim();
+    box.style.setProperty('--alt-font', `"${font.replace(/"/g, '')}"`);
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(font).replace(/%20/g, '+')}&display=swap&text=${encodeURIComponent(alt)}`;
+    document.head.appendChild(link);
+  }
+
   function typedRoles() {
     const el = $('#typed');
     const words = (D.about && D.about.typed && D.about.typed.length) ? D.about.typed : [META.role || ''];
@@ -554,6 +571,7 @@
   let lastTrigger = null;
 
   function fillModal(i) {
+    $$('video', modal).forEach((video) => video.pause());
     const p = PROJECTS[i];
     const cost = projectCost(p);
     const vis = visibleProjectIndices();
@@ -565,7 +583,7 @@
     // photo gallery: big image + thumbnails; click the big image for full screen
     const media = $('#m-media');
     const shots = projectImages(p);
-    media.hidden = !shots.length;
+    media.hidden = !shots.length && !p.video;
     media.innerHTML = shots.length ? `
       <button class="media-main" type="button" aria-label="View image full screen">
         <img src="${esc(shots[0].src)}" alt="${esc(shots[0].caption || p.title)}">
@@ -576,6 +594,16 @@
         <button class="media-thumb ${k === 0 ? 'is-active' : ''}" type="button" data-k="${k}" aria-label="Show image ${k + 1}">
           <img src="${esc(s.src)}" alt="" loading="lazy">
         </button>`).join('')}</div>` : ''}` : '';
+    if (p.video) {
+      media.insertAdjacentHTML('beforeend', `
+        <figure class="project-video">
+          <video controls playsinline preload="metadata" aria-label="${esc(p.videoCaption || p.title)}">
+            <source src="${esc(p.video)}" type="video/mp4">
+            Your browser does not support embedded video. <a href="${esc(p.video)}">Open the video</a>.
+          </video>
+          <figcaption class="media-caption">${esc(p.videoCaption || p.title)}</figcaption>
+        </figure>`);
+    }
     let shown = 0;
     media.onclick = (e) => {
       const thumb = e.target.closest('.media-thumb');
@@ -645,6 +673,7 @@
   }
 
   function closeProject() {
+    $$('video', modal).forEach((video) => video.pause());
     if (!modal.open) return;
     const finish = () => {
       modal.classList.remove('is-closing');
@@ -669,6 +698,7 @@
     modal.addEventListener('cancel', (e) => { e.preventDefault(); closeProject(); });
     modal.addEventListener('click', (e) => { if (e.target === modal) closeProject(); });
     modal.addEventListener('keydown', (e) => {
+      if (e.target.closest('video')) return;
       if (e.key === 'ArrowRight') stepProject(1);
       if (e.key === 'ArrowLeft') stepProject(-1);
     });
@@ -1067,6 +1097,7 @@
   function init() {
     renderMeta();
     renderHero();
+    renderAltName();
     renderAbout();
     renderTimeline();
     renderProjectFilters();
