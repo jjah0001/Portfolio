@@ -10,6 +10,18 @@ Jeffrey Jahja's personal portfolio: a static site in plain HTML, CSS and JavaScr
 - Document every new field in the comment block above its section in `data.js` and in `README.md`.
 - Keep it dependency-free: vanilla JS (IIFE, no modules), and no npm packages in the site itself.
 
+## Project order (always)
+
+`projects[]` in `js/data.js` must be ordered **latest to earliest**. The page shows them in array order.
+
+- When adding a new project, insert it at the correct chronological position. Don't append it to the end.
+- Sort by `year`, descending:
+  - Use the **end** year for ranges (`"2022–2023"` counts as 2023).
+  - `"Present"`, `"Ongoing"` or a status of `In progress` counts as the current year and goes first.
+- If two projects share a year and there's no finer date, put the new one first in that year. If unsure, ask Jeffrey for the month.
+- After inserting, re-check the whole list is still descending, and mention the position you chose (e.g. "added as #3, after X (2024) and before Y (2023)").
+- `featured: true` only changes card size, never the order.
+
 ## Files
 
 | Path | What it is |

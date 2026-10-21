@@ -46,8 +46,8 @@ window.PORTFOLIO = {
     currency: "AUD",                      // default currency for project costs
     socials: [
       { label: "GitHub",   url: "https://github.com/jjah0001",        icon: "github" },
-      { label: "LinkedIn", url: "https://www.linkedin.com/in/your-profile", icon: "linkedin" },
-      { label: "Email",    url: "mailto:you@example.com",                  icon: "mail" }
+      { label: "LinkedIn", url: "https://www.linkedin.com/in/jeffrey-jahja-%E8%91%89%E9%A9%8A%E6%85%B6-8b10a493/?isSelfProfile=true", icon: "linkedin" },
+      { label: "Email",    url: "mailto:jeffrey.jahja7@gmail.com",                  icon: "mail" }
     ]
   },
 
@@ -68,16 +68,16 @@ window.PORTFOLIO = {
     ],
 
     facts: [
-      { icon: "map-pin", label: "Based in",  value: "City, Country" },
-      { icon: "grad",    label: "Studied",   value: "Degree, University" },
-      { icon: "globe",   label: "Speaks",    value: "Your languages" },
-      { icon: "zap",     label: "Currently", value: "What you're building" }
+      { icon: "map-pin", label: "Based in",  value: "Melbourne, Australia" },
+      { icon: "grad",    label: "Studied",   value: "Bachelor of Engineering, Monash University" },
+      { icon: "globe",   label: "Speaks",    value: "Indonesian, English, Chinese" },
+      { icon: "zap",     label: "Currently", value: "Interested in Robotics and Medical Devices" }
     ],
 
     // value: a number, or use auto: "projects" | "languages" | "countries" | "coding" to count automatically
     stats: [
       { auto: "projects",  label: "Projects built" },
-      { value: 3, suffix: "+", label: "Years coding" },
+      { value: 7, suffix: "+", label: "Years coding" },
       { auto: "languages", label: "Languages spoken" },
       { auto: "countries", label: "Countries visited" }
     ]
@@ -160,6 +160,54 @@ window.PORTFOLIO = {
   //   featured   → true makes the card double-size on wide screens
   // Keep completed projects in newest-to-oldest order.
   projects: [
+    {
+      id: "llm-controlled-robot",
+      title: "Scout: LLM-Controlled Robot",
+      short: "A Raspberry Pi robot that asks Claude where to go, fusing camera, 360° LiDAR and ultrasonic data under a local 20 Hz safety layer.",
+      category: "Robotics & AI",
+      year: "2025–2026",
+      status: "In progress",
+      skills: ["Python", "ROS 2", "Raspberry Pi", "Claude API", "LiDAR", "Sensor Fusion", "Linux"],
+      image: "",
+      details: [
+        "<strong>Scout</strong> is a small differential-drive robot built on a <strong>Raspberry Pi 4</strong> running <strong>ROS 2 Jazzy</strong> on Ubuntu 24.04. Its navigation decisions come from Claude: every couple of seconds it sends a camera frame and its fused distance readings to the Claude API and gets back where to go.",
+        "It combines an RPi Camera, a <strong>360° Witmotion D05 dTOF LiDAR</strong> and a front HC-SR04 ultrasonic sensor, with optional IR edge sensors to stop falls. Two DC motors are driven through an L298N motor driver.",
+        "The key design rule is that <strong>Claude never drives the motors directly</strong>. Claude returns a validated intent (speed, turn, duration, reason), and a local motion controller running at 20 Hz turns it into smooth motion. That controller owns safety: it ramps speed, slows near obstacles, steers off walls and stops before a collision whatever Claude asks for.",
+        "The robot also has a persona and memory: its identity is loaded as Claude's system prompt, and notes it makes about its surroundings are saved and recalled in later decisions."
+      ],
+      highlights: [
+        "Designed a two-rate architecture: Claude decides about every 2 s, and a 20 Hz local controller handles smoothness and safety.",
+        "Fused 360° LiDAR, ultrasonic and camera data into a perception summary for each decision.",
+        "Constrained Claude's replies to a validated JSON intent schema so the robot only acts on well-formed commands.",
+        "Built ROS 2 packages for the Claude agent, motion controller, L298N motor driver and sensors, with unit tests for the core logic.",
+        "Wrote a step-by-step setup guide so a first-time user can get from a blank SD card to a robot driven by Claude."
+      ],
+      links: [
+        { label: "GitHub", url: "https://github.com/jjah0001/LLM-Controlled-Robot" }
+      ]
+    },
+    {
+      id: "momowo",
+      title: "Momowo 摸摸我",
+      short: "An animated ESP32 desk companion with expressive eyes, clock, local weather, classical Chinese quotes, a Pomodoro timer and optional Claude AI.",
+      category: "Embedded",
+      year: "2026",
+      status: "In progress",
+      skills: ["C++", "Arduino", "ESP32", "Claude API", "REST APIs", "OLED UI"],
+      image: "",
+      details: [
+        "<strong>Momowo</strong> (摸摸我, \"pat me\") is an animated desk companion built on an <strong>ESP32 / ESP32-C3 SuperMini</strong> with a 1.3\" SH1106 OLED, a TTP223 touch pad and a buzzer. It began as DeskBuddy and grew into a small device that is both a companion and genuinely useful.",
+        "A single touch pad drives everything: tap for the next page, double-tap to return to the buddy, and hold for page actions. The pages include expressive animated eyes with moods, a large clock, local weather with tomorrow's forecast and sunrise/sunset, a classical Chinese quote matched to the season, weather and time of day, the Chinese lunar calendar with solar terms, a 25-minute Pomodoro timer and top news headlines.",
+        "It works fully offline for the buddy, clock, calendars, focus timer and built-in quotes. Holding the pad shows a QR code; scanning it opens a setup page on your phone that sets the clock and, optionally, WiFi. With WiFi it finds its location from the public IP, fetches weather from Open-Meteo, and can use <strong>Claude</strong> for quote translations, a news briefing and feelings of its own."
+      ],
+      highlights: [
+        "Wrote the firmware in C++ for the Arduino-ESP32 core, with pin layouts that switch automatically between ESP32 and ESP32-C3 boards.",
+        "Built a phone setup flow: Momowo hosts its own WiFi and setup page, reached by scanning a QR code on the OLED.",
+        "Integrated web APIs for IP geolocation, Open-Meteo weather and classical Chinese quotes, plus optional Claude features.",
+        "Added a night mode that dims and switches off the OLED to protect it, and an optional DS3231 RTC to keep time through power cuts."
+      ],
+      links: []
+    },
     {
       id: "ece4078-penguinpi",
       title: "PenguinPi Fruit Search",
@@ -424,8 +472,8 @@ window.PORTFOLIO = {
     },
     {
       name: "German", native: "Deutsch", flag: "de",
-      level: "Conversational", cefr: "B1", percent: 30,
-      skills: { speaking: 30, listening: 35, reading: 25, writing: 20 },
+      level: "Conversational", cefr: "B1", percent: 80,
+      skills: { speaking: 80, listening: 80, reading: 80, writing: 70 },
       note: "Optional note."
     }
   ],
@@ -507,10 +555,9 @@ window.PORTFOLIO = {
     { title: "Travel",      icon: "plane",  text: "I am a huge fan of the TV show called The Amazing Race since young and the show has inspired my travels. I even met the host Phil Keoghan!",
       image: "images/interests/travel-1.jpg", imagePosition: "center 28%" },
     { title: "Badminton",   icon: "shuttlecock", text: "Fast, tactical and great fun: my favourite way to stay active and catch up with friends." },
-    { title: "Cooking", icon: "food", text: "I enjoy cooking in my spare time." },
+    { title: "Cooking", icon: "food", text: "I enjoy cooking in my spare time. I usually cook numerous Indonesian and Chinese dishes." },
     { title: "Chinese Tea", icon: "tea",    text: "Exploring Chinese tea culture: brewing, tasting and learning the stories behind different teas." },
     { title: "Music",       icon: "music",  text: "A hige fan of Mandopop" },
-    { title: "Running",     icon: "run",    text: "A sentence about what draws you to this and how you pursue it." }
   ],
 
   // Travel map (Google GeoChart world map + Google Maps embed).
