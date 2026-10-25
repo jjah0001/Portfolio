@@ -161,8 +161,8 @@ window.PORTFOLIO = {
   // Keep completed projects in newest-to-oldest order.
   projects: [
     {
-      id: "llm-controlled-robot",
-      title: "Scout: LLM-Controlled Robot",
+      id: "ratangga",
+      title: "Ratangga: LLM-Controlled Robot",
       short: "A Raspberry Pi robot that asks Claude where to go, fusing camera, 360° LiDAR and ultrasonic data under a local 20 Hz safety layer.",
       category: "Robotics & AI",
       year: "2025–2026",
@@ -170,7 +170,7 @@ window.PORTFOLIO = {
       skills: ["Python", "ROS 2", "Raspberry Pi", "Claude API", "LiDAR", "Sensor Fusion", "Linux"],
       image: "",
       details: [
-        "<strong>Scout</strong> is a small differential-drive robot built on a <strong>Raspberry Pi 4</strong> running <strong>ROS 2 Jazzy</strong> on Ubuntu 24.04. Its navigation decisions come from Claude: every couple of seconds it sends a camera frame and its fused distance readings to the Claude API and gets back where to go.",
+        "<strong>Ratangga</strong> is a small differential-drive robot built on a <strong>Raspberry Pi 4</strong> running <strong>ROS 2 Jazzy</strong> on Ubuntu 24.04. Its navigation decisions come from Claude: every couple of seconds it sends a camera frame and its fused distance readings to the Claude API and gets back where to go.",
         "It combines an RPi Camera, a <strong>360° Witmotion D05 dTOF LiDAR</strong> and a front HC-SR04 ultrasonic sensor, with optional IR edge sensors to stop falls. Two DC motors are driven through an L298N motor driver.",
         "The key design rule is that <strong>Claude never drives the motors directly</strong>. Claude returns a validated intent (speed, turn, duration, reason), and a local motion controller running at 20 Hz turns it into smooth motion. That controller owns safety: it ramps speed, slows near obstacles, steers off walls and stops before a collision whatever Claude asks for.",
         "The robot also has a persona and memory: its identity is loaded as Claude's system prompt, and notes it makes about its surroundings are saved and recalled in later decisions."
