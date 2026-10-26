@@ -55,16 +55,16 @@ window.PORTFOLIO = {
   about: {
     // Put your picture in /images and point to it here, e.g. "images/profile.jpg"
     // A portrait (4:5) crop looks best.
-    photo: "images/profile-placeholder.svg",
+    photo: "images/profile-image.jpg",
 
     // Rotating words typed out in the hero
     typed: ["Engineer", "Developer", "Maker", "Problem solver"],
 
     // Paragraphs may contain simple HTML such as <strong> or <a href="">
     paragraphs: [
-      "Hi, I'm <strong>Your Name</strong> — a short, confident opening line about what you do and what drives you.",
-      "A second paragraph with a bit more colour: your background, what you studied, the kind of problems you love to work on and the industries you're aiming for.",
-      "Optionally, a closing line about what you're doing right now or what you're looking for next."
+      "Hi, I'm <strong>Jeffrey</strong> — an Engineering graduate looking for opportunities in the robotics and medical field.",
+      "I have studied Mechatronics Engineering at Monash University as I have always been into robotics!",
+      "I am an eager person and love to learn more about the world"
     ],
 
     facts: [
@@ -89,38 +89,33 @@ window.PORTFOLIO = {
   timeline: [
     {
       type: "work",
-      title: "Job Title",
-      org: "Company Name",
-      location: "City, Country",
+      title: "Pricing Analyst",
+      org: "Energy Australia",
+      location: "Melbourne, Australia",
       start: "2024",
-      end: "Present",
-      summary: "One sentence describing the role and the team you were part of.",
+      end: "2024",
+      summary: "Determined the Price of Energy in sveral parts of Australia.",
       points: [
-        "An achievement, ideally with a number attached (e.g. cut test time by 30%).",
-        "A system, product or feature you owned end-to-end.",
-        "A tool, process or collaboration you improved."
       ],
       tags: ["Skill", "Tool", "Domain"]
     },
     {
       type: "work",
-      title: "Internship / Part-time Role",
-      org: "Organisation Name",
-      location: "City, Country",
+      title: "Technical Trainee",
+      org: "Telstra",
+      location: "Melbourne, Australia",
       start: "2022",
       end: "2023",
-      summary: "One sentence describing the role.",
+      summary: "Worked in the Cloud division",
       points: [
-        "What you were responsible for.",
-        "Something you shipped or delivered."
       ],
       tags: ["Skill", "Tool"]
     },
     {
       type: "education",
-      title: "Degree Name — Major",
-      org: "University Name",
-      location: "City, Country",
+      title: "Bachelor of Robotics & Mechatronics Engineering & Bachelor of COmmerce",
+      org: "Monash University",
+      location: "Melbourne, Australia",
       start: "2019",
       end: "2023",
       summary: "Honours, thesis topic, GPA/WAM or anything notable.",
@@ -139,6 +134,44 @@ window.PORTFOLIO = {
       end: "2018",
       summary: "Anything worth mentioning.",
       points: []
+    }
+  ],
+
+  /* -------------------------------------------------------- VOLUNTEERING */
+  // Newest first. Every field except role and org is optional.
+  //   image  → optional photo, e.g. "images/volunteering/event.jpg" (click to view full screen)
+  //   gallery→ optional more photos
+  //   link   → optional { label, url }
+  // Leave the list empty ([]) to hide the whole section and its nav link.
+  volunteering: [
+    {
+      role: "Volunteer Role",
+      org: "Organisation Name",
+      location: "City, Country",
+      start: "2024",
+      end: "Present",
+      summary: "Replace with one or two sentences about the cause and what you do.",
+      points: [
+        "Replace with something you did or organised.",
+        "Replace with the impact, ideally with a number (people helped, funds raised, hours)."
+      ],
+      tags: ["Skill", "Cause"],
+      image: "",
+      link: null
+    },
+    {
+      role: "Volunteer Role",
+      org: "Organisation Name",
+      location: "City, Country",
+      start: "2021",
+      end: "2023",
+      summary: "Replace with one or two sentences about the cause and what you do.",
+      points: [
+        "Replace with something you did or organised."
+      ],
+      tags: ["Skill"],
+      image: "",
+      link: null
     }
   ],
 

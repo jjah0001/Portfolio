@@ -48,6 +48,7 @@ Jeffrey Jahja's personal portfolio: a static site in plain HTML, CSS and JavaScr
 - `languages[]`: `flag` is an ISO country code (flagcdn.com). Flags are greyed out until hover or click.
 - `interests[]`: `image`, `gallery`, and `imagePosition` (CSS object-position, e.g. `"center 28%"`).
 - `timeline[].logo`: replaces the icon in the timeline circle.
+- `volunteering[]`: newest first, like projects. Fields: `role`, `org`, `location`, `start`, `end`, `summary`, `points[]`, `tags[]`, optional `image`/`gallery` and `link { label, url }`. An empty list hides the section and its nav link.
 - `travel.visited[]`:
   - `code` is ISO 3166-1. HK, MO and TW are their own entries.
   - `regions[]` uses ISO 3166-2. For China use the **numeric** codes (`CN-11` Beijing, `CN-31` Shanghai…), because Google GeoChart expects those.

@@ -450,6 +450,48 @@
     });
   }
 
+  /* ------------------------------------------------------ volunteering */
+  function renderVolunteering() {
+    const list = D.volunteering || [];
+    const section = $('#volunteering');
+    if (!list.length) {
+      section.hidden = true;
+      const link = $('.nav__links a[href="#volunteering"]');
+      if (link) link.closest('li').hidden = true;
+      return;
+    }
+    const galleries = list.map((v) => toImages([v.image, ...(v.gallery || [])]));
+    const grid = $('#vol-grid');
+    grid.innerHTML = list.map((v, i) => {
+      const imgs = galleries[i];
+      const points = v.points || [];
+      const tags = v.tags || [];
+      return `
+      <article class="vol-card reveal" style="--i:${i}">
+        ${imgs.length ? `<button class="vol-card__media" type="button" data-k="${i}" aria-label="View photos from ${esc(v.org)}">
+          <img src="${esc(imgs[0].src)}" alt="" loading="lazy">
+          ${imgs.length > 1 ? `<span class="interest__count mono">${icon('image')} ${imgs.length}</span>` : ''}
+        </button>` : ''}
+        <div class="vol-card__body">
+          <div class="vol-card__head">
+            <span class="vol-card__icon">${icon('heart')}</span>
+            <p class="tl-date mono">${esc(v.start || '')}${v.end ? ' — ' + esc(v.end) : ''}</p>
+          </div>
+          <h3 class="vol-card__role">${esc(v.role)}</h3>
+          <p class="vol-card__org">${esc(v.org)}${v.location ? ` <span class="tl-loc">· ${esc(v.location)}</span>` : ''}</p>
+          ${v.summary ? `<p class="vol-card__summary">${esc(v.summary)}</p>` : ''}
+          ${points.length ? `<ul class="vol-card__points">${points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul>` : ''}
+          ${tags.length ? `<div class="tl-tags">${tags.map((s) => tagHTML(s, true)).join('')}</div>` : ''}
+          ${v.link && v.link.url ? `<a class="vol-card__link mono" href="${esc(v.link.url)}" target="_blank" rel="noopener">${esc(v.link.label || 'Learn more')} ${icon('external')}</a>` : ''}
+        </div>
+      </article>`;
+    }).join('');
+    grid.addEventListener('click', (e) => {
+      const b = e.target.closest('.vol-card__media');
+      if (b) openLightbox(galleries[Number(b.dataset.k)]);
+    });
+  }
+
   /* ---------------------------------------------------------- projects */
   let pFilter = 'All';
   let pQuery = '';
@@ -1100,6 +1142,7 @@
     renderAltName();
     renderAbout();
     renderTimeline();
+    renderVolunteering();
     renderProjectFilters();
     renderProjects();
     renderLanguages();

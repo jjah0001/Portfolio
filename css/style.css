@@ -559,6 +559,29 @@ body.has-pointer .cursor-glow { opacity: 1; }
 .tl-more li::marker { color: var(--accent); }
 .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
 
+/* -------------------------------------------------------- volunteering */
+.vol-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 18px; }
+.vol-card {
+  display: flex; flex-direction: column; overflow: hidden;
+  border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface);
+  transition: opacity .8s var(--ease) var(--rd), translate .8s var(--ease) var(--rd), border-color .3s, box-shadow .3s;
+}
+.vol-card:hover { border-color: var(--line-2); box-shadow: var(--shadow); }
+.vol-card__media { position: relative; display: block; aspect-ratio: 16 / 9; padding: 0; border: 0; background: var(--surface-2); cursor: zoom-in; overflow: hidden; }
+.vol-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.vol-card__media:hover img { transform: scale(1.05); }
+.vol-card__body { display: flex; flex-direction: column; padding: 22px 24px 24px; flex: 1; }
+.vol-card__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.vol-card__icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); }
+.vol-card__role { margin: 14px 0 2px; font-size: 1.15rem; font-weight: 600; line-height: 1.35; }
+.vol-card__org { margin: 0; }
+.vol-card__summary { margin: 10px 0 0; color: var(--muted); }
+.vol-card__points { margin: 12px 0 0; padding-left: 18px; color: var(--muted); font-size: .94rem; }
+.vol-card__points li { margin-bottom: 5px; }
+.vol-card__points li::marker { color: var(--accent); }
+.vol-card__link { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 16px; color: var(--accent); text-decoration: none; font-size: .66rem; }
+.vol-card__link:hover { text-decoration: underline; }
+
 /* ------------------------------------------------------------ projects */
 .proj-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 16px; }
 .search {

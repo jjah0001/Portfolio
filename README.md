@@ -20,6 +20,7 @@ python3 -m http.server 8000
 | Name, tagline, links | `meta` | `timezone` drives the live clock in the hero; `resume: ""` hides the Résumé button |
 | About Me + photo | `about` | Put your picture in `images/` and set `photo: "images/profile.jpg"` (4:5 portrait works best) |
 | Education & Work | `timeline` | `type: "education"` or `"work"` |
+| Volunteering | `volunteering` | Newest first. `role`, `org`, dates, `summary`, `points`, `tags`, optional `image`/`gallery` and `link`. An empty list hides the section |
 | **Coding Projects** | `projects` | Square cards → click for details. `skills`, `details`, `highlights`, `cost.breakdown`, `links`, optional `image`, `featured: true` for a double-size card |
 | Languages | `languages` | `flag` is a 2-letter country code (`"au"`, `"id"`, `"cn"`…). Flags glow on hover; click for proficiency |
 | Coding languages | `coding` | `icon` is a [Devicon](https://devicon.dev) name (`"python"`, `"cplusplus"`…). Leave it out for a text monogram |
