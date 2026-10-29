@@ -525,33 +525,44 @@ window.PORTFOLIO = {
     {
       name: "English", native: "English", flag: "au",
       level: "Professional", cefr: "C1", percent: 100,
-      skills: { speaking: 100, listening: 100, reading: 100, writing: 100 },
-      note: "Optional note."
+      skills: { speaking: 100, listening: 100, reading: 100, writing: 100 }
     },
     {
       name: "Chinese", native: "华语", flag: "cn",
       level: "Professional", cefr: "C1", percent: 100,
       skills: { speaking: 100, listening: 100, reading: 100, writing: 100},
-      note: "Required language"
+      note: "Required language as I was educated in a Singaporean curriculum school"
     },
     {
       name: "German", native: "Deutsch", flag: "de",
       level: "Conversational", cefr: "B1", percent: 80,
       skills: { speaking: 80, listening: 80, reading: 80, writing: 70 },
-      note: "Optional note."
-    }
+      note: "Picked it up when I was 13, still improving until now"
+    },
+    {
+      name: "French", native: "Français", flag: "fr",
+      level: "Conversational", cefr: "A1", percent: 30,
+      skills: { speaking: 10, listening: 20, reading: 80, writing: 10 },
+      note: ""
+    },
+    {
+      name: "Japanese", native: "日本語", flag: "jp",
+      level: "Conversational", cefr: "A1", percent: 30,
+      skills: { speaking: 10, listening: 30, reading: 40, writing: 10 },
+      note: ""
+    },
   ],
 
   // level: 0–100 (shown as a ring + label). invertDark: true for black logos
   // so they stay visible on the dark theme.
   coding: [
     { name: "Python",     icon: "python",     level: 90, years: "5 yrs" },
-    { name: "C++",        icon: "cplusplus",  level: 80, years: "4 yrs" },
-    { name: "C",          icon: "c",          level: 70, years: "3 yrs" },
+    { name: "C++",        icon: "cplusplus",  level: 60, years: "4 yrs" },
+    { name: "C",          icon: "c",          level: 60, years: "3 yrs" },
     { name: "JavaScript", icon: "javascript", level: 75, years: "3 yrs" },
     { name: "HTML",       icon: "html5",      level: 85, years: "4 yrs" },
     { name: "CSS",        icon: "css3",       level: 80, years: "4 yrs" },
-    { name: "SQL",                            level: 60, years: "2 yrs" },
+    { name: "SQL",                            level: 90, years: "2 yrs" },
     { name: "MATLAB",     icon: "matlab",     level: 90, years: "5 yrs" },
     { name: "Rust",       icon: "rust",       level: 35, years: "<1 yr", invertDark: true }
   ],
@@ -607,12 +618,11 @@ window.PORTFOLIO = {
   // gallery → optional more photos; clicking the card opens them full screen
   // imagePosition → optional crop focus for the card photo, e.g. "center 25%" keeps faces in a tall photo
   interests: [
-    { title: "Travel",      icon: "plane",  text: "I am a huge fan of the TV show called The Amazing Race since young and the show has inspired my travels. I even met the host Phil Keoghan!",
-      image: "images/interests/travel-1.jpg", imagePosition: "center 28%" },
+    { title: "Travel",      icon: "plane",  text: "I am a huge fan of the TV show called The Amazing Race since young and the show has inspired my travels. I even met the host Phil Keoghan!"},
     { title: "Badminton",   icon: "shuttlecock", text: "Fast, tactical and great fun: my favourite way to stay active and catch up with friends." },
     { title: "Cooking", icon: "food", text: "I enjoy cooking in my spare time. I usually cook numerous Indonesian and Chinese dishes." },
     { title: "Chinese Tea", icon: "tea",    text: "Exploring Chinese tea culture: brewing, tasting and learning the stories behind different teas." },
-    { title: "Music",       icon: "music",  text: "A hige fan of Mandopop" },
+    { title: "Music",       icon: "music",  text: "A huge fan of Mandopop" },
   ],
 
   // Travel map (Google GeoChart world map + Google Maps embed).
@@ -637,6 +647,7 @@ window.PORTFOLIO = {
           { code: "AU-SA", name: "South Australia" },
         ]
       },
+      { code: "NZ", name: "New Zealand",    note: "Replace with a memory or highlight." },
       { code: "ID", name: "Indonesia",    note: "I spent most of my childhood here.",
         regions: [
           { code: "ID-JB", name: "Jawa Barat"},
@@ -653,7 +664,7 @@ window.PORTFOLIO = {
       },
       { code: "SG", name: "Singapore",      note: "I lived here for three years" },
       { code: "MY", name: "Malaysia",         note: "My grandmother came from here" },
-      { code: "TH", name: "Thailand",          note: "Replace with a memory or highlight." },
+      { code: "TH", name: "Thailand",          note: "" },
       { code: "KH", name: "Cambodia",          note: "Replace with a memory or highlight." },
       { code: "CN", name: "China",          note: "Replace with a memory or highlight.",
         regions: [
@@ -669,7 +680,7 @@ window.PORTFOLIO = {
       { code: "HK", name: "Hong Kong" },
       { code: "MO", name: "Macau" },
       { code: "TW", name: "Taiwan" },
-      { code: "JP", name: "Japan",          note: "Replace with a memory or highlight." },
+      { code: "JP", name: "Japan",          note: "" },
       {
         code: "US", name: "United States", note: "Replace with a memory or highlight.",
         regions: [
@@ -707,7 +718,6 @@ window.PORTFOLIO = {
       { code: "NL", name: "Netherlands" },
       { code: "BE", name: "Belgium" },
       { code: "IT", name: "Italy",          note: "Replace with a memory or highlight." },
-      { code: "NZ", name: "New Zealand",    note: "Replace with a memory or highlight." },
     ]
   }
 };
