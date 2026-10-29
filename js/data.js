@@ -247,6 +247,11 @@ window.PORTFOLIO = {
       status: "In progress",
       skills: ["C++", "Arduino", "ESP32", "Claude API", "REST APIs", "OLED UI"],
       image: "",
+      cost: {
+        currency: "AUD",
+        total: 20,
+        note: ""
+      },
       details: [
         "<strong>Momowo</strong> (摸摸我, \"pat me\") is an animated desk companion built on an <strong>ESP32 / ESP32-C3 SuperMini</strong> with a 1.3\" SH1106 OLED, a TTP223 touch pad and a buzzer. It began as DeskBuddy and grew into a small device that is both a companion and genuinely useful.",
         "A single touch pad drives everything: tap for the next page, double-tap to return to the buddy, and hold for page actions. The pages include expressive animated eyes with moods, a large clock, local weather with tomorrow's forecast and sunrise/sunset, a classical Chinese quote matched to the season, weather and time of day, the Chinese lunar calendar with solar terms, a 25-minute Pomodoro timer and top news headlines.",
