@@ -620,6 +620,9 @@ body.has-pointer .cursor-glow { opacity: 1; }
 .proj-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin: 0 0 26px; color: var(--faint); font-size: .68rem; }
 @media (hover: none) { .proj-meta__hint { display: none; } }
 
+.proj-groups { display: grid; gap: 44px; }
+.proj-group { min-width: 0; }
+.proj-group .sub-head { margin-top: 0; }
 .proj-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));

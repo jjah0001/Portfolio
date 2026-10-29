@@ -554,7 +554,20 @@
 
   function renderProjects() {
     const grid = $('#proj-grid');
-    grid.innerHTML = PROJECTS.map(cardHTML).join('');
+    if (D.projectsTitle) $('#projects .section-title').textContent = D.projectsTitle;
+    const groups = D.projectGroups || [];
+    const assigned = new Set(groups.map((g) => g.id));
+    const entries = PROJECTS.map((p, i) => ({ p, i }));
+    grid.innerHTML = groups.map((g, n) => {
+      const cards = entries.filter(({ p }) => p.type === g.id);
+      if (!cards.length) return '';
+      return `<section class="proj-group" aria-labelledby="proj-group-${n}">
+        <div class="sub-head"><h3 id="proj-group-${n}">${esc(g.title)}</h3><p class="mono" data-group-count></p></div>
+        <div class="proj-grid">${cards.map(({ p, i }) => cardHTML(p, i)).join('')}</div>
+      </section>`;
+    }).join('');
+    const ungrouped = entries.filter(({ p }) => !assigned.has(p.type));
+    if (ungrouped.length) grid.innerHTML += `<div class="proj-grid">${ungrouped.map(({ p, i }) => cardHTML(p, i)).join('')}</div>`;
     $$('.proj-card', grid).forEach((card) => {
       card.addEventListener('click', () => openProject(Number(card.dataset.index)));
       if (finePointer && !reduceMotion) {
@@ -584,7 +597,7 @@
     const skillOk = pFilter === 'All' || (p.skills || []).some((s) => norm(s) === norm(pFilter));
     if (!skillOk) return false;
     if (!pQuery) return true;
-    const hay = [p.title, p.short, p.category, p.year, p.status, ...(p.skills || [])].join(' ').toLowerCase();
+    const hay = [p.title, p.short, p.category, p.type, p.year, p.status, ...(p.skills || [])].join(' ').toLowerCase();
     return pQuery.split(/\s+/).every((word) => hay.includes(word));
   }
 
@@ -596,6 +609,11 @@
       cell.hidden = !ok;
       if (ok) shown++;
     });
+    $$('.proj-group').forEach((group) => {
+      const count = $$('.proj-cell', group).filter((cell) => !cell.hidden).length;
+      group.hidden = count === 0;
+      $('[data-group-count]', group).textContent = `${count} project${count === 1 ? '' : 's'}`;
+    });
     $('#proj-count').textContent = shown === PROJECTS.length
       ? `${PROJECTS.length} project${PROJECTS.length === 1 ? '' : 's'}`
       : `Showing ${shown} of ${PROJECTS.length}${pFilter !== 'All' ? ` · ${pFilter}` : ''}`;
@@ -603,7 +621,7 @@
   }
 
   const visibleProjectIndices = () => {
-    const vis = PROJECTS.map((p, i) => i).filter((i) => projectMatches(PROJECTS[i]));
+    const vis = $$('#proj-grid .proj-card').map((card) => Number(card.dataset.index)).filter((i) => projectMatches(PROJECTS[i]));
     return vis.length ? vis : PROJECTS.map((p, i) => i);
   };
 
