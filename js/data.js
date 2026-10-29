@@ -145,39 +145,49 @@ window.PORTFOLIO = {
   // Leave the list empty ([]) to hide the whole section and its nav link.
   volunteering: [
     {
-      role: "Volunteer Role",
-      org: "Organisation Name",
-      location: "City, Country",
-      start: "2024",
-      end: "Present",
-      summary: "Replace with one or two sentences about the cause and what you do.",
-      points: [
-        "Replace with something you did or organised.",
-        "Replace with the impact, ideally with a number (people helped, funds raised, hours)."
-      ],
-      tags: ["Skill", "Cause"],
-      image: "",
-      link: null
+      "role": "Event Coordinator",
+      "org": "Cityzen · Buddhist Society of Victoria",
+      "start": "Feb 2024",
+      "end": "Feb 2025",
+      "summary": "Organised community events, including picnics and Songkran celebrations."
     },
     {
-      role: "Volunteer Role",
-      org: "Organisation Name",
-      location: "City, Country",
-      start: "2021",
-      end: "2023",
-      summary: "Replace with one or two sentences about the cause and what you do.",
-      points: [
-        "Replace with something you did or organised."
-      ],
-      tags: ["Skill"],
-      image: "",
-      link: null
+      "role": "Education, Social & Culture",
+      "org": "PPIA Victoria",
+      "start": "Nov 2020",
+      "end": "Nov 2021",
+      "summary": "Promoted Indonesian culture and helped deliver student community events.",
+      "points": [
+        "Led a team of 20 to organise Cultural Night.",
+        "Coordinated logistics for Nobaria, bringing together Indonesian university club committees.",
+        "Supported events with AIYA and contacted partners to assist with delivery and promotion."
+      ]
+    },
+    {
+      "role": "General Committee",
+      "org": "Female Engineers at Monash",
+      "start": "Oct 2020",
+      "end": "Sep 2021",
+      "summary": "Promoted gender diversity in STEM, particularly engineering."
+    },
+    {
+      "role": "General Committee",
+      "org": "Logan Hall Society",
+      "start": "Mar 2020",
+      "end": "Dec 2020",
+      "summary": "Helped organise activities for hall residents during COVID-19.",
+      "points": [
+        "Organised Games Night and proposed online Mid-Autumn Festival celebrations.",
+        "Prepared SWOTVAC packs for residents.",
+        "Nominated for the RES Awards."
+      ]
     }
   ],
 
   /* ------------------------------------------------------------ PROJECTS */
   // The most important section. Each project becomes a square card; clicking
   // it opens the detail view.
+  //   type       → optional "software" or "hardware"; missing types stay in an unlabelled grid
   //   short      → card description (keep it to ~20 words)
   //   skills     → shown on the card (first 3) and in full in the detail view.
   //                Names that match your coding languages / frameworks get icons
@@ -192,9 +202,17 @@ window.PORTFOLIO = {
   //                          { src: "images/projects/robot-3.jpg", caption: "Final demo" }]
   //   featured   → true makes the card double-size on wide screens
   // Keep completed projects in newest-to-oldest order.
+  // Optional section title and ordered groups; empty groups are hidden.
+  // projectGroups[]: id matches projects[].type; title labels the group.
+  projectsTitle: "Projects",
+  projectGroups: [
+    { id: "software", title: "Software Projects" },
+    { id: "hardware", title: "Hardware Projects" }
+  ],
   projects: [
     {
       id: "ratangga",
+      type: "hardware",
       title: "Ratangga: LLM-Controlled Robot",
       short: "A Raspberry Pi robot that asks Claude where to go, fusing camera, 360° LiDAR and ultrasonic data under a local 20 Hz safety layer.",
       category: "Robotics & AI",
@@ -221,6 +239,7 @@ window.PORTFOLIO = {
     },
     {
       id: "momowo",
+      type: "hardware",
       title: "Momowo 摸摸我",
       short: "An animated ESP32 desk companion with expressive eyes, clock, local weather, classical Chinese quotes, a Pomodoro timer and optional Claude AI.",
       category: "Embedded",
@@ -243,6 +262,7 @@ window.PORTFOLIO = {
     },
     {
       id: "ece4078-penguinpi",
+      type: "hardware",
       title: "PenguinPi Fruit Search",
       short: "A PenguinPi robot that detects fruit with deep learning, localises using ArUco markers, and visualises navigation in a custom GUI.",
       category: "Robotics",
@@ -270,6 +290,7 @@ window.PORTFOLIO = {
     },
     {
       id: "ece4191-parcel-robot",
+      type: "hardware",
       title: "Parcel Delivery Robot",
       short: "A parcel-delivery robot with custom SolidWorks mechanical design, QR-code destination scanning and a Raspberry Pi-based ROS 2 control system.",
       category: "Robotics & Mechanical Design",
@@ -302,6 +323,7 @@ window.PORTFOLIO = {
     },
     {
       "id": "fyp-yanshee-rize",
+      "type": "hardware",
       "video": "videos/fyp-yanshee-demo.mp4",
       "videoCaption": "FYP demonstration · Yanshee robot",
       "title": "End-User Robot Programming",
@@ -341,6 +363,7 @@ window.PORTFOLIO = {
     },
     {
       "id": "swivel-monkey",
+      "type": "hardware",
       "title": "Project Swivel Monkey",
       "short": "Arm and boom design for an electric-wheelchair storage prototype, informed by clinical collaboration and interviews with people with lived experience.",
       "category": "Assistive Technology",
@@ -375,6 +398,7 @@ window.PORTFOLIO = {
     },
     {
       "id": "ece4179-deep-learning",
+      "type": "software",
       "title": "Deep Learning for Image Analysis",
       "short": "Neural networks for image denoising, digit classification and facial landmarks, with experiments exploring model behaviour.",
       "category": "Deep Learning",
@@ -403,6 +427,7 @@ window.PORTFOLIO = {
     },
     {
       id: "fit3179-english-language",
+      type: "software",
       title: "The Power of the English Language",
       short: "An interactive data story exploring English proficiency across countries through geography, business, tourism and language use in Singapore.",
       category: "Data Visualisation",
@@ -428,6 +453,7 @@ window.PORTFOLIO = {
     },
     {
       "id": "ece4179-weighted-regression",
+      "type": "software",
       "title": "Weighted Regression & Noisy Data",
       "short": "A NumPy implementation of ordinary and weighted least squares, comparing fitted models and prediction error on noisy data.",
       "category": "Machine Learning",
@@ -453,6 +479,7 @@ window.PORTFOLIO = {
     },
     {
       "id": "ece4076-computer-vision",
+      "type": "software",
       "title": "Computer Vision & Image Clustering",
       "short": "Python coursework exploring edge detection, homography coordinates and colour-image clustering through implemented algorithms and visual experiments.",
       "category": "Computer Vision",
