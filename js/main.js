@@ -868,16 +868,6 @@
     });
   }
 
-  function renderSoftSkills() {
-    $('#soft-grid').innerHTML = (D.softSkills || []).map((s, i) => `
-      <li class="soft reveal" style="--i:${i}">
-        <span class="soft-num mono">${pad(i + 1)}</span>
-        ${icon(s.icon)}
-        <h4>${esc(s.name)}</h4>
-        <p>${esc(s.description || '')}</p>
-      </li>`).join('');
-  }
-
   /* --------------------------------------------------------- interests */
   function renderInterests() {
     const list = D.interests || [];
@@ -1148,7 +1138,6 @@
     renderLanguages();
     renderCoding();
     renderFrameworks();
-    renderSoftSkills();
     renderInterests();
     renderTravel();
     wireImageFallbacks();

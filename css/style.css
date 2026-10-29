@@ -1019,27 +1019,6 @@ button.fw-chip:hover { border-color: var(--accent); color: var(--accent); transf
   font-family: var(--f-mono); font-size: .62rem;
 }
 
-/* ---- soft skills ---- */
-.soft-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
-.soft {
-  position: relative; overflow: hidden;
-  padding: 26px 24px;
-  border: 1px solid var(--line); border-radius: 18px;
-  background: var(--surface);
-  transition: opacity .8s var(--ease) var(--rd), translate .8s var(--ease) var(--rd), border-color .3s;
-}
-.soft::after {
-  content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px;
-  background: var(--accent); transform: scaleX(0); transform-origin: left;
-  transition: transform .5s var(--ease);
-}
-.soft:hover { border-color: var(--line-2); }
-.soft:hover::after { transform: scaleX(1); }
-.soft > .ico { width: 26px; height: 26px; margin-bottom: 16px; color: var(--accent); }
-.soft-num { position: absolute; top: 26px; right: 24px; color: var(--faint); font-size: .66rem; }
-.soft h4 { margin: 0 0 6px; font-size: 1.06rem; font-weight: 600; }
-.soft p { margin: 0; color: var(--muted); font-size: .92rem; }
-
 /* ----------------------------------------------------------- interests */
 .interest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 44%), 1fr)); gap: 14px; margin-bottom: 56px; }
 @media (max-width: 480px) { .interest .interest__body { padding: 18px; } .interest .interest__title { font-size: .82rem; } }

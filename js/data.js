@@ -113,7 +113,7 @@ window.PORTFOLIO = {
     },
     {
       type: "education",
-      title: "Bachelor of Robotics & Mechatronics Engineering & Bachelor of COmmerce",
+      title: "Bachelor of Robotics & Mechatronics Engineering & Bachelor of Commerce",
       org: "Monash University",
       location: "Melbourne, Australia",
       start: "2019",
@@ -128,8 +128,8 @@ window.PORTFOLIO = {
     {
       type: "education",
       title: "High School / Certificate",
-      org: "School or Provider",
-      location: "City, Country",
+      org: "Australian International School Singapore",
+      location: "Singapore, Singapore",
       start: "2016",
       end: "2018",
       summary: "Anything worth mentioning.",
@@ -201,7 +201,7 @@ window.PORTFOLIO = {
       year: "2025–2026",
       status: "In progress",
       skills: ["Python", "ROS 2", "Raspberry Pi", "Claude API", "LiDAR", "Sensor Fusion", "Linux"],
-      image: "",
+      image: "images/projects/ratangga.jpg",
       details: [
         "<strong>Ratangga</strong> is a small differential-drive robot built on a <strong>Raspberry Pi 4</strong> running <strong>ROS 2 Jazzy</strong> on Ubuntu 24.04. Its navigation decisions come from Claude: every couple of seconds it sends a camera frame and its fused distance readings to the Claude API and gets back where to go.",
         "It combines an RPi Camera, a <strong>360° Witmotion D05 dTOF LiDAR</strong> and a front HC-SR04 ultrasonic sensor, with optional IR edge sensors to stop falls. Two DC motors are driven through an L298N motor driver.",
@@ -251,6 +251,8 @@ window.PORTFOLIO = {
       featured: true,
       skills: ["Python", "YOLOv8", "EKF SLAM", "OpenCV", "ArUco", "Pygame", "NumPy", "A* Path Planning"],
       image: "",
+      video: "videos/ece4078-penguinpi-demo.mp4",
+      videoCaption: "PenguinPi fruit search demonstration · ECE4078 Group 407",
       role: "Robot software & GUI development · ECE4078 Group 407",
       details: [
         "For <strong>ECE4078 at Monash University</strong>, I programmed a PenguinPi robot to identify fruit using deep learning and estimate its location using ArUco landmarks. The group project brought together computer vision, localisation and navigation in a physical robot.",
@@ -274,7 +276,9 @@ window.PORTFOLIO = {
       year: "2023",
       status: "Completed",
       skills: ["SolidWorks", "Mechanical Design", "CAD", "ROS 2", "Raspberry Pi", "Python"],
-      image: "",
+      image: "images/projects/ece4191-parcel-robot.jpg",
+      video: "videos/ece4191-parcel-robot-demo.mp4",
+      videoCaption: "Parcel delivery robot demonstration · ECE4191 Group 11",
       role: "Robot mechanical design · ECE4191 Group 11",
       team: "5",
       cost: {
@@ -501,7 +505,7 @@ window.PORTFOLIO = {
       name: "Chinese", native: "华语", flag: "cn",
       level: "Professional", cefr: "C1", percent: 100,
       skills: { speaking: 100, listening: 100, reading: 100, writing: 100},
-      note: "Optional note."
+      note: "Required language"
     },
     {
       name: "German", native: "Deutsch", flag: "de",
@@ -569,15 +573,6 @@ window.PORTFOLIO = {
         { name: "VS Code", icon: "vscode" },
       ]
     }
-  ],
-
-  softSkills: [
-    { name: "Communication",   icon: "message", description: "Replace with one line of evidence — e.g. presented a project to a panel of 50." },
-    { name: "Teamwork",        icon: "users",   description: "Replace with one line of evidence — e.g. coordinated a cross-disciplinary team." },
-    { name: "Problem solving", icon: "target",  description: "Replace with one line of evidence — e.g. debugged a hardware fault under a deadline." },
-    { name: "Leadership",      icon: "compass", description: "Replace with one line of evidence — e.g. led a club or project team." },
-    { name: "Adaptability",    icon: "zap",     description: "Replace with one line of evidence — e.g. picked up a new stack in two weeks." },
-    { name: "Time management", icon: "clock",   description: "Replace with one line of evidence — e.g. balanced study, work and side projects." }
   ],
 
   /* ----------------------------------------------------------- INTERESTS */

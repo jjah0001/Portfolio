@@ -27,7 +27,7 @@ Jeffrey Jahja's personal portfolio: a static site in plain HTML, CSS and JavaScr
 | Path | What it is |
 |---|---|
 | `index.html` | Page skeleton: nav, hero, section shells, project `<dialog>`, photo lightbox `<dialog>` |
-| `js/data.js` | All content (meta, about, timeline, projects, languages, coding, frameworks, softSkills, interests, travel) |
+| `js/data.js` | All content (meta, about, timeline, projects, languages, coding, frameworks, interests, travel) |
 | `js/main.js` | Renders everything and wires up the interactions. Grouped by section with `/* --- name --- */` banners |
 | `css/style.css` | All styles. Colour and font tokens are in `:root` (dark) and `[data-theme="light"]` |
 | `images/` | `projects/`, `interests/`, `travel/`, `logos/`, plus `profile-placeholder.svg` and `favicon.svg` |
@@ -58,7 +58,7 @@ Jeffrey Jahja's personal portfolio: a static site in plain HTML, CSS and JavaScr
 
 - **`url()` inside a CSS custom property resolves relative to `css/`, not the page.** Set background images inline (`style="background-image:url(...)"`), never through `--var`.
 - A global rule `[hidden] { display: none !important; }` exists because components set `display`. Use the `hidden` attribute to toggle visibility.
-- Scroll-reveal uses the `translate` property, so `transform` stays free for hover and tilt effects. Elements that need both a `.reveal` transition and their own transitions must list both, using `var(--rd)` for the reveal delay (see `.fw-group`, `.soft`, `.interest`).
+- Scroll-reveal uses the `translate` property, so `transform` stays free for hover and tilt effects. Elements that need both a `.reveal` transition and their own transitions must list both, using `var(--rd)` for the reveal delay (see `.fw-group`, `.interest`).
 - `-webkit-text-stroke` on CJK glyphs shows overlapping contours. Use a solid fill for Chinese text.
 - Headers use Bank Gothic only if it's installed locally (commercial font). Otherwise they fall back to Michroma from Google Fonts.
 - GitHub Pages paths are case-sensitive. Keep image and video filenames lowercase with hyphens.

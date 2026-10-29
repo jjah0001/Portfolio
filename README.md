@@ -25,7 +25,6 @@ python3 -m http.server 8000
 | Languages | `languages` | `flag` is a 2-letter country code (`"au"`, `"id"`, `"cn"`…). Flags glow on hover; click for proficiency |
 | Coding languages | `coding` | `icon` is a [Devicon](https://devicon.dev) name (`"python"`, `"cplusplus"`…). Leave it out for a text monogram |
 | Libraries & frameworks | `frameworks` | Grouped; same `icon` rules |
-| Soft skills | `softSkills` | |
 | Interests | `interests` | Icon names are listed at the top of `data.js` |
 | Travel map | `travel.visited` | ISO country codes; optional `regions` (`"AU-VIC"`, `"US-CA"`) let visitors zoom into a country |
 
