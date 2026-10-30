@@ -729,7 +729,7 @@ window.PORTFOLIO = {
   // gallery → optional more photos; clicking the card opens them full screen
   // imagePosition → optional crop focus for the card photo, e.g. "center 25%" keeps faces in a tall photo
   interests: [
-    { title: "Travel",      icon: "plane",  text: "I am a huge fan of the TV show called The Amazing Race since young and the show has inspired my travels. I even met the host Phil Keoghan!"},
+    { title: "Travel",      icon: "plane",  text: "I am a huge fan of the TV show called The Amazing Race since young and the show has inspired my travels."},
     { title: "Badminton",   icon: "shuttlecock", text: "Fast, tactical and great fun: my favourite way to stay active and catch up with friends." },
     { title: "Cooking", icon: "food", text: "I enjoy cooking in my spare time. I usually cook numerous Indonesian and Chinese dishes." },
     { title: "Chinese Tea", icon: "tea",    text: "Exploring Chinese tea culture: brewing, tasting and learning the stories behind different teas." },
