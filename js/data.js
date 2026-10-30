@@ -402,6 +402,25 @@ window.PORTFOLIO = {
       ]
     },
     {
+      "id": "foot-interface-internship",
+      "type": "hardware",
+      "title": "Foot Interface Internship",
+      "short": "A foot-interface prototype developed during an internship at Monash University in 2022.",
+      "category": "Hardware",
+      "year": "2022",
+      "status": "Prototype",
+      "role": "Internship · Monash University",
+      "details": [
+        "Foot-interface prototype from my 2022 internship at Monash University."
+      ],
+      "links": [
+        {
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/jeffrey-jahja-%E8%91%89%E9%A9%8A%E6%85%B6-8b10a493/"
+        }
+      ]
+    },
+    {
       "id": "ece4179-deep-learning",
       "type": "software",
       "title": "Deep Learning for Image Analysis",
@@ -558,17 +577,48 @@ window.PORTFOLIO = {
     },
   ],
 
+  /* ------------------------------------------- awards & certifications */
+  // recognition: optional { title, navLabel, items[] }; empty/missing items hide section/nav.
+  // items[]: title required; kind, issuer, date, description optional plain text.
+  // link: optional { label, url } for a credential or labelled source (HTTP/S).
+  // Dated entries newest first, then undated entries.
+  // Source: Jeffrey's LinkedIn profile. ROS course date unavailable.
+  recognition: {
+    "title": "Awards & Certifications",
+    "navLabel": "Awards",
+    "items": [
+      {
+        "title": "CSWA Exam",
+        "kind": "Certification",
+        "issuer": "Dassault Systemes Solutions Lab",
+        "date": "May 2021"
+      },
+      {
+        "title": "Ideathon 2020 Runner-up",
+        "kind": "Award",
+        "issuer": "Engineers Without Borders",
+        "date": "September 2020"
+      },
+      {
+        "title": "Fundamentals of Robot Operating System ROS for Beginners",
+        "kind": "Training",
+        "issuer": "Tertiary Courses Singapore"
+      }
+    ]
+  },
+
+  // Display order: proficiency descending, then experience for ties.
   // level: 0–100 (shown as a ring + label). invertDark: true for black logos
   // so they stay visible on the dark theme.
   coding: [
     { name: "Python",     icon: "python",     level: 90, years: "5 yrs" },
-    { name: "C++",        icon: "cplusplus",  level: 60, years: "4 yrs" },
-    { name: "C",          icon: "c",          level: 60, years: "3 yrs" },
-    { name: "JavaScript", icon: "javascript", level: 75, years: "3 yrs" },
+    { name: "MATLAB",     icon: "matlab",     level: 90, years: "5 yrs" },
+    { name: "SQL",                            level: 90, years: "2 yrs" },
     { name: "HTML",       icon: "html5",      level: 85, years: "4 yrs" },
     { name: "CSS",        icon: "css3",       level: 80, years: "4 yrs" },
-    { name: "SQL",                            level: 90, years: "2 yrs" },
-    { name: "MATLAB",     icon: "matlab",     level: 90, years: "5 yrs" },
+    { name: "JavaScript", icon: "javascript", level: 75, years: "3 yrs" },
+    { name: "C++",        icon: "cplusplus",  level: 60, years: "4 yrs" },
+    { name: "C",          icon: "c",          level: 60, years: "3 yrs" },
     { name: "Rust",       icon: "rust",       level: 35, years: "<1 yr", invertDark: true }
   ],
 

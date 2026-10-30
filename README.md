@@ -25,6 +25,7 @@ python3 -m http.server 8000
 | Languages | `languages` | `flag` is a 2-letter country code (`"au"`, `"id"`, `"cn"`…). Flags glow on hover; click for proficiency |
 | Coding languages | `coding` | `icon` is a [Devicon](https://devicon.dev) name (`"python"`, `"cplusplus"`…). Leave it out for a text monogram |
 | Libraries & frameworks | `frameworks` | Grouped; same `icon` rules |
+| Awards & certifications | `recognition` | Optional `title`, `navLabel`, `items[]`. Each item has `title`, optional `kind`, `issuer`, `date`, `description`, and `link { label, url }` (HTTP/S). Plain text; missing/empty items hide section and navigation. Dated entries newest first, then undated entries. |
 | Interests | `interests` | Icon names are listed at the top of `data.js` |
 | Travel map | `travel.visited` | ISO country codes; optional `regions` (`"AU-VIC"`, `"US-CA"`) let visitors zoom into a country |
 
@@ -82,3 +83,7 @@ The page still works offline; those pieces just fall back gracefully.
 `projectsTitle` optionally sets the section heading. `projectGroups` is an ordered list of `{ id, title }` objects. Each project may set `type` to `software` or `hardware` to match a group ID. Projects keep their data order within each group; keep the main array newest first. Robotics and embedded devices are classified as hardware even when they include software. Projects without a matching type remain visible in an unlabelled grid. Omit the groups to keep one grid. Search and skill filters apply across all groups; groups without matches are hidden.
 
 The four volunteering entries are ordered by end date, newest first. Titles, dates and responsibilities were checked against Jeffrey’s public LinkedIn profile on 29 October 2026. Cityzen uses the Event Coordinator entry listed under Buddhist Society of Victoria (February 2024–February 2025).
+
+Coding languages render in `coding[]` array order: proficiency descending, then experience for ties.
+
+CSWA, EWB Ideathon and ROS training are from [Jeffrey’s public LinkedIn listing](https://au.linkedin.com/in/jeffrey-jahja-%E8%91%89%E9%A9%8A%E6%85%B6-8b10a493/in). The unavailable ROS date is omitted.

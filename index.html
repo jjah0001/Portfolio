@@ -44,7 +44,8 @@
         <li><a href="#volunteering"><span>03</span>Volunteering</a></li>
         <li><a href="#projects"><span>04</span>Projects</a></li>
         <li><a href="#skills"><span>05</span>Skills</a></li>
-        <li><a href="#interests"><span>06</span>Interests</a></li>
+        <li id="recognition-nav" hidden><a href="#recognition"><span>06</span><b id="recognition-nav-label"></b></a></li>
+        <li><a href="#interests"><span>07</span>Interests</a></li>
       </ul>
 
       <div class="nav__actions">
@@ -212,11 +213,22 @@
       </div>
     </section>
 
-    <!-- ============ 06 INTERESTS ============ -->
-    <section class="section" id="interests">
+    <section class="section" id="recognition" aria-labelledby="recognition-title" hidden>
       <div class="wrap">
         <header class="section-head reveal">
           <span class="section-num mono">06</span>
+          <h2 class="section-title" id="recognition-title"></h2>
+          <span class="section-rule"></span>
+        </header>
+        <div class="recognition-grid" id="recognition-grid"></div>
+      </div>
+    </section>
+
+    <!-- ============ 07 INTERESTS ============ -->
+    <section class="section" id="interests">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-num mono">07</span>
           <h2 class="section-title">Interests</h2>
           <span class="section-rule"></span>
         </header>

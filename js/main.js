@@ -785,6 +785,28 @@
     }
   }
 
+  /* ------------------------------------------- awards & certifications */
+  function renderRecognition() {
+    const config = D.recognition || {};
+    const items = (config.items || []).filter((item) => item && item.title);
+    $('#recognition').hidden = !items.length;
+    $('#recognition-nav').hidden = !items.length;
+    if (!items.length) return;
+    $('#recognition-title').textContent = config.title || '';
+    $('#recognition-nav-label').textContent = config.navLabel || config.title || '';
+    $('#recognition-grid').innerHTML = items.map((item, i) => `
+      <article class="recognition-card reveal" style="--i:${i % 3}">
+        <div class="recognition-meta mono">
+          ${item.kind ? `<span>${esc(item.kind)}</span>` : ''}
+          ${item.date ? `<span>${esc(item.date)}</span>` : ''}
+        </div>
+        <h3>${esc(item.title)}</h3>
+        ${item.issuer ? `<p>${esc(item.issuer)}</p>` : ''}
+        ${item.description ? `<p>${esc(item.description)}</p>` : ''}
+        ${item.link && /^https?:\/\//i.test(item.link.url || '') ? `<a class="recognition-link" href="${esc(item.link.url)}" target="_blank" rel="noopener noreferrer">${esc(item.link.label || item.title)} ${icon('external')}</a>` : ''}
+      </article>`).join('');
+  }
+
   /* ------------------------------------------------------------ skills */
   function renderLanguages() {
     const grid = $('#lang-grid');
@@ -1155,6 +1177,7 @@
     renderProjects();
     renderLanguages();
     renderCoding();
+    renderRecognition();
     renderFrameworks();
     renderInterests();
     renderTravel();
