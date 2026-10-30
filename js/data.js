@@ -101,6 +101,20 @@ window.PORTFOLIO = {
     },
     {
       type: "work",
+      title: "Business Intern",
+      org: "PT Fajar Surya Wisesa, Tbk",
+      location: "Jakarta, Indonesia · On-site",
+      start: "Jun 2023",
+      end: "Jul 2023",
+      summary: "Internship exploring robotic process automation, company finances and Indonesian taxation.",
+      points: [
+        "Studied how robotic process automation (RPA), databases and SQL could reduce manual work.",
+        "Studied the company's assets and liabilities, along with the Indonesian tax system."
+      ],
+      tags: ["SQL", "Databases", "Robotic Process Automation"]
+    },
+    {
+      type: "work",
       title: "Technical Trainee",
       org: "Telstra",
       location: "Melbourne, Australia",
@@ -124,6 +138,33 @@ window.PORTFOLIO = {
         "Relevant coursework or awards.",
         "Clubs, teams or societies."
       ]
+    },
+    {
+      type: "work",
+      title: "Mathematics and Chemistry Tutor",
+      org: "Cluey Learning",
+      location: "Australia · Online",
+      start: "Jan 2021",
+      end: "Sep 2022",
+      summary: "Part-time online tutor providing weekly mathematics and chemistry tuition to 10 Australian students in Years 7–12.",
+      points: [
+        "Trained and qualified to tutor students with ADHD and dyslexia.",
+        "Specialised in the Australian Curriculum for Years 7–12 across all states and territories.",
+        "Balanced tutoring commitments with university study."
+      ]
+    },
+    {
+      type: "work",
+      title: "Operations (Outreach) Lead",
+      org: "Monash Connected Autonomous Vehicle (MCAV)",
+      start: "Mar 2022",
+      end: "Aug 2022",
+      summary: "Part-time outreach role creating an Arduino and 3D printing curriculum for students in Years 10–11.",
+      points: [
+        "Developed the Arduino and 3D printing curriculum.",
+        "Worked with one other person to deliver the curriculum."
+      ],
+      tags: ["Arduino", "3D Printing"]
     },
     {
       type: "education",
@@ -405,13 +446,21 @@ window.PORTFOLIO = {
       "id": "foot-interface-internship",
       "type": "hardware",
       "title": "Foot Interface Internship",
-      "short": "A foot-interface prototype developed during an internship at Monash University in 2022.",
-      "category": "Hardware",
-      "year": "2022",
+      "short": "An unfinished foot-interface prototype for a four-degree-of-freedom robot, designed in SolidWorks during a Monash RoMI Lab research internship.",
+      "category": "Robotics & Mechanical Design",
+      "year": "2021–2022",
       "status": "Prototype",
-      "role": "Internship · Monash University",
+      "role": "Undergraduate Research Assistant · Monash University · RoMI Lab",
+      "skills": ["SolidWorks", "Mechanical Design", "Prototyping"],
       "details": [
-        "Foot-interface prototype from my 2022 internship at Monash University."
+        "From November 2021 to February 2022, I worked as an <strong>Undergraduate Research Assistant</strong> during an internship at Monash University's <strong>Robotics in Medicine and Interaction (RoMI) Laboratory</strong> in Clayton, Victoria.",
+        "I contributed to constructing a novel foot interface for a <strong>four-degree-of-freedom (4-DOF) robot</strong>, intended to be comfortable, functional and distraction-free. The interface remained an unfinished prototype.",
+        "I reviewed previous foot-interface designs to inform my own designs and used <strong>SolidWorks</strong> to design the interface."
+      ],
+      "highlights": [
+        "Reviewed previous foot-interface designs to inform the prototype.",
+        "Designed the interface in SolidWorks.",
+        "Contributed to construction of the unfinished 4-DOF foot-interface prototype."
       ],
       "links": [
         {
@@ -582,11 +631,18 @@ window.PORTFOLIO = {
   // items[]: title required; kind, issuer, date, description optional plain text.
   // link: optional { label, url } for a credential or labelled source (HTTP/S).
   // Dated entries newest first, then undated entries.
-  // Source: Jeffrey's LinkedIn profile. ROS course date unavailable.
+  // Sources: Jeffrey's LinkedIn profile and supplied Beihang certificate details.
+  // ROS course date unavailable.
   recognition: {
     "title": "Awards & Certifications",
     "navLabel": "Awards",
     "items": [
+      {
+        "title": "Engineering Medicine Summer School",
+        "kind": "Certificate",
+        "issuer": "Beihang University",
+        "date": "July 2026"
+      },
       {
         "title": "CSWA Exam",
         "kind": "Certification",
