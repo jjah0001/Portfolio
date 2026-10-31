@@ -307,6 +307,65 @@ window.PORTFOLIO = {
       links: []
     },
     {
+      "id": "oelek",
+      "type": "software",
+      "title": "Oelek — Sambal Atlas",
+      "short": "An interactive atlas of Indonesian sambal with regional profiles, a province map, dish pairing, a spice guide and a personality quiz.",
+      "category": "Interactive Website",
+      "year": "2026",
+      "skills": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Claude API",
+        "Cloudflare Workers"
+      ],
+      "details": [
+        "Oelek is an English-language atlas of Indonesian sambal, with regional profiles, illustrated cards and a province map.",
+        "Visitors can explore sambal families, discover a sambal of the day, browse a spice guide, find dish pairings and take a personality quiz.",
+        "Built with HTML, CSS and JavaScript. Dish pairing uses Claude through a Cloudflare Worker, with a built-in keyword matcher as a fallback. An animated village backdrop and synthesised soundscape respond to the time of day."
+      ],
+      "links": [
+        {
+          "label": "Visit website",
+          "url": "https://jjah0001.github.io/oelek/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/jjah0001/oelek"
+        }
+      ]
+    },
+    {
+      "id": "tea-time",
+      "type": "software",
+      "title": "Tea Time (Cha 茶)",
+      "short": "An interactive guide to Chinese and Taiwanese teas, combining regional maps, tea profiles, a brewing timer, pairings and a personality quiz.",
+      "category": "Interactive Website",
+      "year": "2026",
+      "skills": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Node.js"
+      ],
+      "details": [
+        "Tea Time, currently branded Cha 茶, is an interactive tea guide covering teas from China and Taiwan.",
+        "It combines regional maps and tea profiles with a brewing timer, pairing tools, a tea personality quiz and a personal tea shelf.",
+        "A Node.js build assembles the site into a single HTML page. The animated Wuyi tea-mountain backdrop and soundscape follow the seasons, local sunrise and sunset, and traditional solar terms."
+      ],
+      "links": [
+        {
+          "label": "Visit website",
+          "url": "https://jjah0001.github.io/cha/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/jjah0001/cha"
+        }
+      ]
+    },
+    {
       id: "ece4078-penguinpi",
       type: "hardware",
       title: "PenguinPi Fruit Search",
